@@ -1,0 +1,44 @@
+<div class="ma3 sans-serif" [formGroup]="calcForm">
+  <div class="b">Shares</div>
+  <input formControlName="shares"  />
+
+  <br />
+  <br />
+  <div class="b">Cost</div>
+  <input formControlName="atCost" />
+
+  <br />
+  <br />
+  <span class="i b">Current basis: {{ currentCostBasis | number }}</span>
+
+  <br />
+  <hr />
+  <br />
+
+  <div class="b">Theoretical Buy</div>
+
+  <br />
+
+  <div class="b">More Shares</div> 
+  <input formControlName="moreShares" />
+
+  <br />
+  <br />
+  <div class="b">... at new Price
+  </div>
+  <input formControlName="atNewPrice" />
+
+
+  <br />
+  <br />
+  New Spend:
+  {{ newSpend | number }}
+  <br />
+  New Cost Basis:
+  {{ newCostBasis | number }}
+
+  <br/><br/><br/>
+  Ticker
+  <input formControlName="ticker" />
+  <button (click)="apiTest()">Get it</button>
+</div>
