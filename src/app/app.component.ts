@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { HttpClient, HttpClientModule } from  '@angular/common/http';
 import * as puppeteer from 'puppeteer';
 // import puppeteer from 'puppeteer/lib/esm/puppeteer/puppeteer';
@@ -11,7 +11,7 @@ import * as puppeteer from 'puppeteer';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  calcForm;
+  calcForm: FormGroup;
   currentCostBasis;
 
   moreShares;
@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // this.pup()
+    // this.apiTest()
     this.calcForm = this.fb.group({
       shares: new FormControl(''),
       atCost: new FormControl(''),
@@ -51,7 +52,8 @@ export class AppComponent implements OnInit {
   }
 
   apiTest() {
-    this.http.get('https://BunkerBrain.jesseangelo.repl.co').subscribe(console.log);
+    console.log(this.calcForm.controls['ticker'].value)
+    this.http.get(`https://BunkerBrain.jesseangelo.repl.co/isSP500?ticker=${this.calcForm.controls['ticker'].value}`).subscribe(console.log); 
   }
 
   async pup() {
