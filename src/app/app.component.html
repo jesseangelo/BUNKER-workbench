@@ -1,44 +1,47 @@
 <div class="ma3 sans-serif" [formGroup]="calcForm">
-  <div class="b">Shares</div>
-  <input formControlName="shares"  />
+  <section>
+    <h2>Cost Reducer Calcducer</h2>
+    <div class="b">Shares</div>
+    <input formControlName="shares" />
 
-  <br />
-  <br />
-  <div class="b">Cost</div>
-  <input formControlName="atCost" />
+    <br />
+    <br />
+    <div class="b">Cost</div>
+    <input formControlName="atCost" />
 
-  <br />
-  <br />
-  <span class="i b">Current basis: {{ currentCostBasis | number }}</span>
+    <br />
+    <br />
+    <span class="i b">Current basis: {{ currentCostBasis | number }}</span>
 
-  <br />
-  <hr />
-  <br />
+    <br />
+    <hr />
+    <br />
 
-  <div class="b">Theoretical Buy</div>
+    <div class="b">Theoretical Buy</div>
 
-  <br />
+    <br />
 
-  <div class="b">More Shares</div> 
-  <input formControlName="moreShares" />
+    <div class="b">More Shares</div>
+    <input formControlName="moreShares" />
 
-  <br />
-  <br />
-  <div class="b">... at new Price
-  </div>
-  <input formControlName="atNewPrice" />
+    <br />
+    <br />
+    <div class="b">... at new Price</div>
+    <input formControlName="atNewPrice" />
 
-
-  <br />
-  <br />
-  New Spend:
-  {{ newSpend | number }}
-  <br />
-  New Cost Basis:
-  {{ newCostBasis | number }}
-
-  <br/><br/><br/>
-  Ticker
-  <input formControlName="ticker"/>
-  <button (click)="apiTest()">Get it</button>
+    <br />
+    <br />
+    New Spend:
+    {{ newSpend | number }}
+    <br />
+    New Cost Basis:
+    {{ newCostBasis | number }}
+    <br /><br /><br />
+  </section>
+  <section>
+    <h2>Heeeeey, wait a minute. Is this part of the S&P 500??</h2>
+    Ticker
+    <input formControlName="ticker" />
+    <button (click)="apiTest()">Get it</button>
+  </section>
 </div>

@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { HttpClient, HttpClientModule } from  '@angular/common/http';
-import * as puppeteer from 'puppeteer';
-// import puppeteer from 'puppeteer/lib/esm/puppeteer/puppeteer';
-// import puppeteer from 'puppeteer/lib/cjs/puppeteer/puppeteer';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   calcForm: FormGroup;
@@ -21,17 +17,15 @@ export class AppComponent implements OnInit {
   newSpend;
   newCostBasis;
 
-  constructor(private fb: FormBuilder, private http: HttpClient ) {}
+  constructor(private fb: FormBuilder, private http: HttpClient) {}
 
   ngOnInit() {
-    // this.pup()
-    // this.apiTest()
     this.calcForm = this.fb.group({
       shares: new FormControl(''),
       atCost: new FormControl(''),
       moreShares: new FormControl(''),
       atNewPrice: new FormControl(''),
-      ticker: new FormControl('')
+      ticker: new FormControl(''),
     });
 
     this.calcForm.valueChanges.subscribe((vals) => {
@@ -52,22 +46,11 @@ export class AppComponent implements OnInit {
   }
 
   apiTest() {
-    console.log(this.calcForm.controls['ticker'].value)
-    this.http.get(`https://BunkerBrain.jesseangelo.repl.co/isSP500?ticker=${this.calcForm.controls['ticker'].value}`).subscribe(console.log); 
-  }
-
-  async pup() {
-  //async pup() {
-    await console.log('ppmop')
-    // const browser = await puppeteer.launch();
-    // const page = await browser.newPage();
-    // await page.goto("https://roic.ai/company/EPAM");
-    // // await page.screenshot({path: 'testpngshot.png'})
-    // const ttm_roic = await page.evaluate(() => {
-    //     return Array.from(document.querySelectorAll("div.flex:nth-child(22) > div:nth-child(2) > div:nth-child(17)")).map(x => x.textContent)
-    // })
-    // console.log(ttm_roic)
-
-    // await browser.close();
+    console.log(this.calcForm.controls['ticker'].value);
+    this.http
+      .get(
+        `https://BunkerBrain.jesseangelo.repl.co/isSP500?ticker=${this.calcForm.controls['ticker'].value}`
+      )
+      .subscribe(console.log);
   }
 }
