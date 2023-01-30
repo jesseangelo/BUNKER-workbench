@@ -17,6 +17,8 @@ export class AppComponent implements OnInit {
   newSpend;
   newCostBasis;
 
+  companies = [];
+
   constructor(private fb: FormBuilder, private http: HttpClient) {}
 
   ngOnInit() {
@@ -52,5 +54,9 @@ export class AppComponent implements OnInit {
         `https://BunkerBrain.jesseangelo.repl.co/isSP500?ticker=${this.calcForm.controls['ticker'].value}`
       )
       .subscribe(console.log);
+  }
+
+  getCompanies() {
+    this.http.get(`https://BunkerBrain.jesseangelo.repl.co/companies`).subscribe(console.log)
   }
 }

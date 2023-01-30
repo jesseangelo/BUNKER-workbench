@@ -1,5 +1,10 @@
 <div class="ma3 sans-serif" [formGroup]="calcForm">
   <section>
+    <h2>Companies</h2>
+    <button (click)="getCompanies()">Get Companies</button>
+    {{ companies }}
+  </section>
+  <section>
     <h2>Cost Reducer Calcducer</h2>
     <div class="b">Shares</div>
     <input formControlName="shares" />
