@@ -22,31 +22,12 @@ export class AppComponent implements OnInit {
   constructor(private fb: FormBuilder, private http: HttpClient) {}
 
   ngOnInit() {
-    //this.apiTest()
     this.calcForm = this.fb.group({
-      enterTicker: new FormControl(''),
-      shares: new FormControl(''),
-      atCost: new FormControl(''),
-      moreShares: new FormControl(''),
-      atNewPrice: new FormControl(''),
-      ticker: new FormControl(''),
+      newTicker: new FormControl(''),
+      ticker: new FormControl('')
     });
 
-    this.calcForm.valueChanges.subscribe((vals) => {
-      this.currentCostBasis = +vals.atCost * +vals.shares;
-      // console.log('vals are ', vals);
-
-      const allShares = +vals.shares + +vals.moreShares;
-      this.newSpend = +vals.moreShares * +vals.atNewPrice;
-      const allPrice = this.currentCostBasis + this.newSpend;
-
-      this.newCostBasis = allPrice / allShares;
-
-      // 10 * 5 = 50
-      // 10 * 7 = 70
-      // 20 @ 120
-      // 120 / 20 = 6
-    });
+    
   }
 
   isSP500() {
@@ -59,10 +40,10 @@ export class AppComponent implements OnInit {
   }
 
   apiTest() {
-    console.log(this.calcForm.controls['enterTicker'].value);
-    const t = this.calcForm.controls['enterTicker'].value;
-    this.companies.push({ticker: t});
-    const body = this.companies
+    console.log(this.calcForm.controls['newTicker'].value);
+    const t = this.calcForm.controls['newTicker'].value;
+    this.companies.push({ ticker: t });
+    const body = this.companies;
 
     this.http
       .post(
@@ -74,9 +55,11 @@ export class AppComponent implements OnInit {
   }
 
   getCompanies() {
-    this.http.get(`https://BunkerBrain.jesseangelo.repl.co/companies`).subscribe((c: any) => {
-      this.companies = c;
-      console.log(this.companies)
-  })
+    this.http
+      .get(`https://BunkerBrain.jesseangelo.repl.co/companies`)
+      .subscribe((c: any) => {
+        this.companies = c;
+        console.log(this.companies);
+      });
   }
 }
