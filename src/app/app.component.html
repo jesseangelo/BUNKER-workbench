@@ -1,8 +1,13 @@
 <div class="ma3 sans-serif" [formGroup]="calcForm">
+  
   <section>
     <h2>Companies</h2>
-    <button (click)="getCompanies()">Get Companies</button>
-    {{ companies }}
+    API TEST
+  <button (click)="getCompanies()">GET</button>
+  <br />
+  <input formControlName="enterTicker" />
+  <button (click)="apiTest()">ADD</button>
+    
   </section>
   <section>
     <h2>Cost Reducer Calcducer</h2>

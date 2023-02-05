@@ -22,8 +22,9 @@ export class AppComponent implements OnInit {
   constructor(private fb: FormBuilder, private http: HttpClient) {}
 
   ngOnInit() {
-    this.apiTest()
+    //this.apiTest()
     this.calcForm = this.fb.group({
+      enterTicker: new FormControl(''),
       shares: new FormControl(''),
       atCost: new FormControl(''),
       moreShares: new FormControl(''),
@@ -58,18 +59,24 @@ export class AppComponent implements OnInit {
   }
 
   apiTest() {
-    // console.log(this.calcForm.controls['ticker'].value);
-    const body = JSON.stringify({ ticker: 'BOB'})
+    console.log(this.calcForm.controls['enterTicker'].value);
+    const t = this.calcForm.controls['enterTicker'].value;
+    this.companies.push({ticker: t});
+    const body = this.companies
+
     this.http
       .post(
         `https://BunkerBrain.jesseangelo.repl.co/update?
-        ticker`, 
+        ticker`,
         body
       )
-      .subscribe();
+      .subscribe(() => console.log('api called'));
   }
 
   getCompanies() {
-    this.http.get(`https://BunkerBrain.jesseangelo.repl.co/companies`).subscribe(console.log)
+    this.http.get(`https://BunkerBrain.jesseangelo.repl.co/companies`).subscribe((c: any) => {
+      this.companies = c;
+      console.log(this.companies)
+  })
   }
 }
