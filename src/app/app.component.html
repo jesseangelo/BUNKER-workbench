@@ -8,6 +8,12 @@
     <button (click)="apiTest()">ADD</button>
   </section>
   <section>
+    <h2>Scour for information</h2>
+    <input formControlName="tickerToScour" />
+    <button (click)="scour()">Scour</button>
+    {{ earningsDate }}
+  </section>
+  <section>
     <cost-reducer></cost-reducer>
   </section>
   <section>

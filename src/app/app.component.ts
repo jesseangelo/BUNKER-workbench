@@ -18,16 +18,28 @@ export class AppComponent implements OnInit {
   newCostBasis;
 
   companies = [];
+  earningsDate = ''
 
   constructor(private fb: FormBuilder, private http: HttpClient) {}
 
   ngOnInit() {
     this.calcForm = this.fb.group({
       newTicker: new FormControl(''),
-      ticker: new FormControl('')
+      ticker: new FormControl(''),
+      tickerToScour: new FormControl('')
     });
+  }
 
-    
+  scour() {
+    const t = this.calcForm.controls['tickerToScour'].value;
+    console.log('scouring for:', t)
+    this.http.get(
+      `https://BunkerBrain.jesseangelo.repl.co/nextearnings?ticker=${t}`, {responseType: 'text'}
+      )
+      .subscribe((e) => {
+        this.earningsDate = e
+      });
+
   }
 
   isSP500() {
