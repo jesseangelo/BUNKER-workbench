@@ -1,25 +1,23 @@
-<div class="ma3 sans-serif" [formGroup]="calcForm">
-  <section>
-    <h2>Companies</h2>
-    API TEST
-    <button (click)="getCompanies()">GET</button>
-    <br />
-    <input formControlName="newTicker" />
-    <button (click)="apiTest()">ADD</button>
-  </section>
-  <section>
-    <h2>Scour for information</h2>
-    <input formControlName="tickerToScour" />
-    <button (click)="scour()">Scour</button>
-    {{ earningsDate }}
-  </section>
-  <section>
-    <cost-reducer></cost-reducer>
-  </section>
-  <section>
-    <h2>Heeeeey, wait a minute. Is this part of the S&P 500??</h2>
-    Ticker
-    <input formControlName="ticker" />
-    <button (click)="isSP500()">Get it</button>
-  </section>
+<div class="ma3 sans-serif" >
+<mat-tab-group dynamicHeight>
+  <mat-tab label="Details Insights"> 
+    <details-insights></details-insights>  
+    <br/>
+   
+   
+  </mat-tab>
+<mat-tab label="Dashboard News"> HEY
+  <dashboard-news></dashboard-news>
+  <br/>
+  <br/><br/><br/><br/><br/><br/>
+
+
+</mat-tab>
+
+<mat-tab label="Portfolio Watchlist"> 
+  <portfolio-watchlist></portfolio-watchlist> </mat-tab>
+
+</mat-tab-group>
+
+ 
 </div>
