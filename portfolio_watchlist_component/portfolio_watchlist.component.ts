@@ -16,6 +16,21 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
     <input formControlName="newTicker" />
     <button (click)="apiTest()">ADD</button>
   </section>
+  <section> 
+    <div *ngFor="let t of companies">
+    <mat-expansion-panel hideToggle>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+    {{t.ticker}}
+    </mat-panel-title>
+    <mat-panel-description>
+      This is a summary of the content
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <p>This is the primary content of the panel.</p>
+</mat-expansion-panel>
+</div>
+  </section>
   </div>
   
   `,
@@ -35,10 +50,6 @@ export class PortfolioWatchlistComponent implements OnInit {
       tickerToScour: new FormControl('')
     });
   }
-
- 
-
-  
 
   apiTest() {
     console.log(this.calcForm.controls['newTicker'].value);

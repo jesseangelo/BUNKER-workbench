@@ -6,7 +6,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
   selector: 'details-insights',
   template: `Details Insights
   What
-
+  <div class="ma3 sans-serif" [formGroup]="calcForm">
 
   <section>
     <h2>Scour for information</h2>
@@ -19,9 +19,10 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
     <h2>Next Earnings</h2>
     {{ earningsDate }}
     <h2>Heeeeey, wait a minute. Is this part of the S&P 500??</h2>
-    Ticker
-   {{ isInSP500 }}
  
+   <h1 class="dark-green">{{ (isInSP500 ? 'Yup' : 'Nope!') }}</h1>
+ 
+  </div>
   </div>
   `,
 })
@@ -55,7 +56,7 @@ export class DetailsInsightsComponent implements OnInit {
   scour() {
     const t = this.calcForm.controls['tickerToScour'].value;
     console.log('scouring for:', t)
-    this.isInSP500(t)
+    this.isSP500(t)
     this.http.get(
       `https://BunkerBrain.jesseangelo.repl.co/nextearnings?ticker=${t}`, {responseType: 'text'}
       )
