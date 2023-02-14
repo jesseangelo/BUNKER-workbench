@@ -10,12 +10,25 @@ import { DashboardNewsComponent } from '../../dashboard_news_component/dashboard
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PortfolioWatchlistComponent } from '../../portfolio_watchlist_component/portfolio_watchlist.component';
 import { DetailsInsightsComponent } from '../../details_insights_component/details_insights.component';
-import {MatExpansionModule} from '@angular/material/expansion';
-
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
-  imports: [BrowserModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule, HttpClientModule, MatTabsModule, MatExpansionModule],
-  declarations: [AppComponent, CostReducerComponent, DashboardNewsComponent, PortfolioWatchlistComponent, DetailsInsightsComponent],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatTabsModule,
+    MatExpansionModule,
+  ],
+  declarations: [
+    AppComponent,
+    CostReducerComponent,
+    DashboardNewsComponent,
+    PortfolioWatchlistComponent,
+    DetailsInsightsComponent,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -37,9 +37,9 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class PortfolioWatchlistComponent implements OnInit {
   calcForm: FormGroup;
-  
+
   companies = [];
-  earningsDate = ''
+  earningsDate = '';
 
   constructor(private fb: FormBuilder, private http: HttpClient) {}
 
@@ -47,7 +47,7 @@ export class PortfolioWatchlistComponent implements OnInit {
     this.calcForm = this.fb.group({
       newTicker: new FormControl(''),
       ticker: new FormControl(''),
-      tickerToScour: new FormControl('')
+      tickerToScour: new FormControl(''),
     });
   }
 
