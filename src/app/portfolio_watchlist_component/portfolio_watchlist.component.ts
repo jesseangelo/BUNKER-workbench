@@ -5,34 +5,31 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'portfolio-watchlist',
   template: `
-  
   <div class="ma3 sans-serif" [formGroup]="calcForm">
-
-  <section>
-    <h2>Companies</h2>
-    Get All 
-    <button (click)="getCompanies()">GET</button>
-    <br />
-    <input formControlName="newTicker" />
-    <button (click)="apiTest()">ADD</button>
-  </section>
-  <section> 
-    <div *ngFor="let t of companies">
-    <mat-expansion-panel hideToggle>
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-    {{t.ticker}}
-    </mat-panel-title>
-    <mat-panel-description>
-      This is a summary of the content
-    </mat-panel-description>
-  </mat-expansion-panel-header>
-  <p>This is the primary content of the panel.</p>
-</mat-expansion-panel>
-</div>
-  </section>
+    <section>
+      <h2>Companies</h2>
+      Get All 
+      <button (click)="getCompanies()">GET</button>
+      <br />
+      <input formControlName="newTicker" />
+      <button (click)="apiTest()">ADD</button>
+    </section>
+    <section> 
+      <div *ngFor="let t of companies">
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+          {{t.ticker}}
+          </mat-panel-title>
+          <mat-panel-description>
+            This is a summary of the content
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>This is the primary content of the panel.</p>
+      </mat-expansion-panel>
+      </div>
+    </section>
   </div>
-  
   `,
 })
 export class PortfolioWatchlistComponent implements OnInit {
@@ -46,8 +43,6 @@ export class PortfolioWatchlistComponent implements OnInit {
   ngOnInit() {
     this.calcForm = this.fb.group({
       newTicker: new FormControl(''),
-      ticker: new FormControl(''),
-      tickerToScour: new FormControl(''),
     });
   }
 
