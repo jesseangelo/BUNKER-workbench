@@ -9,10 +9,14 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
     <section>
       <h2>Companies</h2>
       Get All 
-      <button (click)="getCompanies()">GET</button>
+      <button mat-button (click)="getCompanies()">GET</button>
       <br />
-      <input formControlName="newTicker" />
-      <button (click)="apiTest()">ADD</button>
+      <mat-form-field class="example-full-width">
+        <mat-label>New Ticker</mat-label>
+        <input matInput formControlName="newTicker" /> 
+      </mat-form-field>
+      
+      <button mat-button (click)="apiTest()">ADD</button>
     </section>
     <section> 
       <div *ngFor="let t of companies">

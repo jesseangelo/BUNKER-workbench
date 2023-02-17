@@ -9,7 +9,10 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
   <div class="ma3 sans-serif" [formGroup]="calcForm">
     <section>
       <h2>Scour for information</h2>
-      <input matInput formControlName="tickerToScour" />
+      <mat-form-field class="example-full-width">
+        <mat-label>Ticker to Scour</mat-label>
+        <input matInput formControlName="tickerToScour" /> 
+      </mat-form-field>
       <button mat-button (click)="scour()">Scour</button>
       <button mat-button (click)="save()">Save</button>
     </section>
