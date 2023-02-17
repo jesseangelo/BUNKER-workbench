@@ -5,13 +5,15 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'details-insights',
   template: `Details Insights
-  What
+
   <div class="ma3 sans-serif" [formGroup]="calcForm">
 
   <section>
     <h2>Scour for information</h2>
     <input formControlName="tickerToScour" />
     <button (click)="scour()">Scour</button>
+
+    <button (click)="save()">Save</button>
     
   </section>
 
@@ -40,6 +42,19 @@ export class DetailsInsightsComponent implements OnInit {
       ticker: new FormControl(''),
       tickerToScour: new FormControl('')
     });
+  }
+
+  save() {
+    console.log(this.calcForm.controls['ticker'].value);
+    const t = this.calcForm.controls['ticker'].value;
+    const body = { ticker: t, earningsDate: this.earningsDate };
+
+    this.http
+      .post(
+        `https://BunkerBrain.jesseangelo.repl.co/update`,
+        body
+      )
+      .subscribe(() => console.log('api called'));
   }
 
   isSP500(ticker) {
