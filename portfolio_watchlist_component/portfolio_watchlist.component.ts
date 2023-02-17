@@ -10,7 +10,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
   <section>
     <h2>Companies</h2>
-    API TEST
+    Get All 
     <button (click)="getCompanies()">GET</button>
     <br />
     <input formControlName="newTicker" />
