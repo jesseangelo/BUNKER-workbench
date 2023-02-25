@@ -1,0 +1,31 @@
+<div [formGroup]="calcForm">
+  <h2>Cost Reducer Calcducer</h2>
+  <div class="flex">
+    <div class="b">Shares</div>
+    <input formControlName="shares" />
+    <div class="b">Cost</div>
+    <input formControlName="atCost" />
+  </div>
+  <br />
+  <span class="i b">Current basis: {{ currentCostBasis | number }}</span>
+  <hr />
+  <div class="b">Theoretical Buy</div>
+  <br />
+  <div class="flex">
+    <div class="b">More Shares</div>
+    <input formControlName="moreShares" />
+    <br />
+    <div class="b">... at new Price</div>
+    <input formControlName="atNewPrice" />
+  </div>
+  <div class="flex">
+    <div>
+      New Spend:
+      {{ newSpend | number }}
+    </div>
+    <div>
+    New Cost Basis:
+    {{ newCostBasis | number }}
+  </div>
+  </div>
+  

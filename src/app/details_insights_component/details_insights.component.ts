@@ -4,8 +4,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'details-insights',
-  template: `Details Insights
-
+  template: `
   <div class="ma3 sans-serif" [formGroup]="calcForm">
     <section>
       <h2>Scour for information</h2>
@@ -23,6 +22,20 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
   
       <h1 class="dark-green">{{ (isInSP500 ? 'Yup' : 'Nope!') }}</h1>
     </div>
+
+    Notes:
+
+Numbers
+
+Why and what
+
+Moat 
+
+Management 
+
+Thesis
+
+Valuation model
   </div>
   `,
 })

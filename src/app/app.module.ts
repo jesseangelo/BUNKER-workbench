@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { CostReducerComponent } from './cost_reducer_calc.component';
+import { CostReducerComponent } from './features/cost_reducer_calc.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DashboardNewsComponent } from './dashboard_news_component/dashboard_news.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
