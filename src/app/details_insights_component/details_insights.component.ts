@@ -1,3 +1,4 @@
+import { ApiService } from './../services/api.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -44,7 +45,7 @@ export class DetailsInsightsComponent implements OnInit {
   earningsDate = '';
   isInSP500 = null;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {}
+  constructor(private fb: FormBuilder, private http: HttpClient, private api: ApiService) {}
 
   ngOnInit() {
     this.calcForm = this.fb.group({
@@ -60,14 +61,14 @@ export class DetailsInsightsComponent implements OnInit {
     const body = { ticker: t, earningsDate: this.earningsDate };
 
     this.http
-      .post(`https://BunkerBrain.jesseangelo.repl.co/update`, body)
+      .post(`${this.api.endPoint}/update`, body)
       .subscribe(() => console.log('api called'));
   }
 
   isSP500(ticker) {
     // console.log(this.calcForm.controls['ticker'].value);
     this.http
-      .get(`https://BunkerBrain.jesseangelo.repl.co/isSP500?ticker=${ticker}`)
+      .get(`${this.api.endPoint}/isSP500?ticker=${ticker}`)
       .subscribe((is) => {
         this.isInSP500 = is;
       });
@@ -78,7 +79,7 @@ export class DetailsInsightsComponent implements OnInit {
     console.log('scouring for:', t);
     this.isSP500(t);
     this.http
-      .get(`https://BunkerBrain.jesseangelo.repl.co/nextearnings?ticker=${t}`, {
+      .get(`${this.api.endPoint}/nextearnings?ticker=${t}`, {
         responseType: 'text',
       })
       .subscribe((e) => {

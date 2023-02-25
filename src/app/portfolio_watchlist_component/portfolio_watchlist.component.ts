@@ -1,3 +1,4 @@
+import { ApiService } from './../services/api.service';
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
@@ -46,7 +47,7 @@ export class PortfolioWatchlistComponent implements OnInit {
   companies = [];
   earningsDate = "";
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {}
+  constructor(private fb: FormBuilder, private http: HttpClient, private api:ApiService) {}
 
   ngOnInit() {
     this.calcForm = this.fb.group({
@@ -64,7 +65,7 @@ export class PortfolioWatchlistComponent implements OnInit {
 
     this.http
       .post(
-        `https://BunkerBrain.jesseangelo.repl.co/update?
+        `${this.api.endPoint}/update?
         ticker`,
         body
       )
@@ -73,7 +74,7 @@ export class PortfolioWatchlistComponent implements OnInit {
 
   getCompanies() {
     this.http
-      .get(`https://BunkerBrain.jesseangelo.repl.co/companies`)
+      .get(`${this.api.endPoint}/companies`)
       .subscribe((c: any) => {
         this.companies = c;
         console.log(`Companies loaded: ${this.companies}`);
