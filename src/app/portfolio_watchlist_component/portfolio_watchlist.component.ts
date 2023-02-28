@@ -1,4 +1,4 @@
-import { ApiService } from './../services/api.service';
+import { ApiService } from "./../services/api.service";
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
@@ -12,7 +12,7 @@ import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
         <!-- Get All 
       <button mat-button (click)="getCompanies()">GET</button>
       <br /> -->
-       
+
         <mat-form-field class="example-full-width">
           <mat-label>New Ticker</mat-label>
           <input matInput formControlName="newTicker" />
@@ -21,7 +21,8 @@ import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
         <button mat-button (click)="add()">ADD</button>
       </section>
 
-      <section><h2>Cost Reducer</h2>
+      <section>
+        <h2>Cost Reducer</h2>
         <section><cost-reducer></cost-reducer></section>
         <div *ngFor="let t of companies">
           <mat-expansion-panel hideToggle>
@@ -37,7 +38,7 @@ import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
           </mat-expansion-panel>
         </div>
       </section>
-      Notes:  Price reduction calculator Cost basis calculator  
+      Notes: Price reduction calculator Cost basis calculator
     </div>
   `,
 })
@@ -47,7 +48,11 @@ export class PortfolioWatchlistComponent implements OnInit {
   companies = [];
   earningsDate = "";
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private api:ApiService) {}
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private api: ApiService
+  ) {}
 
   ngOnInit() {
     this.calcForm = this.fb.group({
@@ -63,21 +68,15 @@ export class PortfolioWatchlistComponent implements OnInit {
     this.companies.push({ ticker: t });
     const body = this.companies;
 
-    this.http
-      .post(
-        `${this.api.endPoint}/update?
-        ticker`,
-        body
-      )
+    this.api
+      .addCompany(t, body)
       .subscribe(() => console.log("add called", body));
   }
 
   getCompanies() {
-    this.http
-      .get(`${this.api.endPoint}/companies`)
-      .subscribe((c: any) => {
-        this.companies = c;
-        console.log(`Companies loaded: ${this.companies}`);
-      });
+    this.api.getCompanies().subscribe((c: any) => {
+      this.companies = c;
+      console.log(`Companies loaded: ${this.companies}`);
+    });
   }
 }
