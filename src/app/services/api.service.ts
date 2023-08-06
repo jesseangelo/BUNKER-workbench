@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { of } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -8,12 +9,13 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   get endPoint() {
-    return "http://localhost:3000";
+    return "http://localhost:8080"
+    // return "http://bnkr-env.eba-gakhxzk2.us-west-2.elasticbeanstalk.com"
   }
   
   isAlive() {
-    return true;
-    // return this.http.get(`${this.endPoint}/healthCheck);
+    // return of(true);
+    return this.http.get(`${this.endPoint}/healthCheck`);
   } 
 
   getCompanyOverview(ticker) {

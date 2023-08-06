@@ -7,13 +7,14 @@ import { ApiService } from "./services/api.service";
 })
 export class AppComponent implements OnInit {
 
-  apiIsConnected = false;
+  apiIsConnected = '';
   
   constructor(private api: ApiService) {}
 
   ngOnInit() {
     this.api.isAlive().subscribe((connected: boolean) => {
+      console.log('con', connected)
       this.apiIsConnected = connected ? 'Connected' : 'Disconnected';
-    }
+    })
   }
 }
