@@ -10,6 +10,11 @@ export class ApiService {
   get endPoint() {
     return "http://localhost:3000";
   }
+  
+  isAlive() {
+    return true;
+    // return this.http.get(`${this.endPoint}/healthCheck);
+  } 
 
   getCompanyOverview(ticker) {
     return this.http.get(`${this.endPoint}/companyOverview?ticker=${ticker}`);
