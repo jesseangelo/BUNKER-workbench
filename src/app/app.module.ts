@@ -2,7 +2,7 @@ import { ApiService } from './services/api.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CostReducerComponent } from './_features/cost_reducer_calc.component';
@@ -14,6 +14,8 @@ import { DetailsInsightsComponent } from './details_insights_component/details_i
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
+import { NetworkInterceptor } from './services/network.interceptor';
 
 @NgModule({
   imports: [
@@ -26,6 +28,7 @@ import { MatInputModule } from '@angular/material/input';
     MatExpansionModule,
     MatButtonModule,
     MatInputModule,
+    MatProgressSpinnerModule
   ],
   declarations: [
     AppComponent,
@@ -35,5 +38,12 @@ import { MatInputModule } from '@angular/material/input';
     DetailsInsightsComponent,
   ],
   bootstrap: [AppComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: NetworkInterceptor,
+      multi: true,
+    },
+ ],
 })
 export class AppModule {}

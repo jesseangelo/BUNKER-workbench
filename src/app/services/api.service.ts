@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { of } from "rxjs";
+import { BehaviorSubject, catchError, Observable, of } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -8,15 +8,20 @@ import { of } from "rxjs";
 export class ApiService {
   constructor(private http: HttpClient) {}
 
+  isLoading: BehaviorSubject<boolean>;
+
   get endPoint() {
-    return "http://localhost:8080"
-    // return "http://bnkr-env.eba-gakhxzk2.us-west-2.elasticbeanstalk.com"
+    // return "http://localhost:8080"
+    return "http://bnkr-env.eba-gakhxzk2.us-west-2.elasticbeanstalk.com"
   }
   
   isAlive() {
     // return of(true);
-    return this.http.get(`${this.endPoint}/healthCheck`);
-  } 
+    return this.http.get(`${this.endPoint}/healthCheck`)
+      .pipe(
+        catchError(() =>  of(false))
+      )
+    };
 
   getCompanyOverview(ticker) {
     return this.http.get(`${this.endPoint}/companyOverview?ticker=${ticker}`);
@@ -48,4 +53,9 @@ export class ApiService {
   fearGreed() {
     return this.http.get(`${this.endPoint}/fearGreed`);
   }
+
+  // baseGet(URL) {
+  //   this.isLoading.next(true);
+  //   return this.http.get(URL).pipe()
+  // }
 }
