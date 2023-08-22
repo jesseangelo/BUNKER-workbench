@@ -11,11 +11,14 @@ import { DashboardNewsComponent } from './dashboard_news_component/dashboard_new
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PortfolioWatchlistComponent } from './portfolio_watchlist_component/portfolio_watchlist.component';
 import { DetailsInsightsComponent } from './details_insights_component/details_insights.component';
-import { MatExpansionModule } from '@angular/material/expansion';
+import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NetworkInterceptor } from './services/network.interceptor';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ResearchTemplateComponent } from './_features/research_template/research_template.component';
 
 @NgModule({
   imports: [
@@ -28,7 +31,10 @@ import { NetworkInterceptor } from './services/network.interceptor';
     MatExpansionModule,
     MatButtonModule,
     MatInputModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatExpansionModule,
   ],
   declarations: [
     AppComponent,
@@ -36,6 +42,7 @@ import { NetworkInterceptor } from './services/network.interceptor';
     DashboardNewsComponent,
     PortfolioWatchlistComponent,
     DetailsInsightsComponent,
+    ResearchTemplateComponent
   ],
   bootstrap: [AppComponent],
   providers: [
@@ -44,6 +51,6 @@ import { NetworkInterceptor } from './services/network.interceptor';
       useClass: NetworkInterceptor,
       multi: true,
     },
- ],
+  ],
 })
-export class AppModule {}
+export class AppModule { }

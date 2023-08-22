@@ -1,4 +1,4 @@
-import { ApiService } from "./../services/api.service";
+import { ApiService } from "../../services/api.service";
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
@@ -27,9 +27,9 @@ Insider buying?
 </aside>
 
 <aside> 💡
-<mat-form-field>
+
 <textarea matInput placeholder="Textarea"></textarea>
-</mat-form-field>
+
 </aside>
 
 SCOUR - What do you find?
@@ -49,9 +49,9 @@ Dividend? How sustainable?
 Quality of assets on balance sheet? Declining revenue
 
 <aside> 💡
-<mat-form-field>
+
 <textarea matInput placeholder="Textarea"></textarea>
-</mat-form-field>
+
 </aside>
 
 Management
@@ -75,9 +75,9 @@ Objective and subjective metrics. This section is very important
 Net Debt / Free Cash Flow This ratio shows you how many years it would take the company to pay down all its debt when it would use all available free cash flow.
 
 <aside> 💡
-<mat-form-field>
+
 <textarea matInput placeholder="Textarea"></textarea>
-</mat-form-field>
+
 </aside>
 
 MOS
@@ -106,9 +106,9 @@ PEG ratio (p/e / growth rate) < 1
 Quality of assets
 
 <aside> 💡
-<mat-form-field>
+
 <textarea matInput placeholder="Textarea"></textarea>
-</mat-form-field>
+
 </aside>
 
 Thesis (when will value be recognized?)
@@ -126,9 +126,9 @@ Prospects for future growth in market and business
 Event large/global and small
 
 <aside> 💡
-<mat-form-field>
+
 <textarea matInput placeholder="Textarea"></textarea>
-</mat-form-field>
+
 </aside>
 
 Notes
@@ -152,8 +152,7 @@ market cap: 12.952B
 cap rate is owner's cash / market cap; 358 / 1,295 = 27.64%
 
 
-    <div class="ma3 sans-serif" [formGroup]="calcForm">
-    src/app/details_insights_component/details_insights.component.ts
+    
       Capable of understanding
       
       SCOUR
@@ -164,33 +163,13 @@ cap rate is owner's cash / market cap; 358 / 1,295 = 27.64%
       MOS / Price
 
       Thesis
-      <section>
-        <h2>Scour for information</h2>
-        <mat-form-field class="example-full-width">
-          <mat-label>Ticker to Scour</mat-label>
-          <input matInput formControlName="tickerToScour" />
-        </mat-form-field>
-        <button mat-button (click)="scour()">Scour</button>
-        <button mat-button (click)="save()">Save</button>
-      </section>
-
-      <div class="sans-serif" [formGroup]="calcForm">
-        <h2>Next Earnings</h2>
-        {{ earningsDate }}
-        <h2>Heeeeey, wait a minute. Is this part of the S&P 500??</h2>
-
-        <h1 class="dark-green">{{ isInSP500 ? "Yup" : "Nope!" }}</h1>
-
-        <p>{{ overview?.Description }}</p>
-
-        src/app/details_insights_component/details_insights.component.ts
-      </div>
+      
 
       Notes: Numbers Why and what Moat Management Thesis Valuation model
-    </div>
+ 
   `,
 })
-export class DetailsInsightsComponent implements OnInit {
+export class ResearchTemplateComponent implements OnInit {
   calcForm: FormGroup;
   earningsDate = "";
   isInSP500 = null;
