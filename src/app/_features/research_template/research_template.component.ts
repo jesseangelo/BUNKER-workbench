@@ -27,7 +27,9 @@ Insider buying?
 </aside>
 
 <aside> 💡
-
+<mat-form-field>
+<textarea matInput placeholder="Textarea"></textarea>
+</mat-form-field>
 </aside>
 
 SCOUR - What do you find?
@@ -47,7 +49,9 @@ Dividend? How sustainable?
 Quality of assets on balance sheet? Declining revenue
 
 <aside> 💡
-
+<mat-form-field>
+<textarea matInput placeholder="Textarea"></textarea>
+</mat-form-field>
 </aside>
 
 Management
@@ -60,50 +64,51 @@ Do they have integrity and shareholders in mind? Clear vision?
 
 Objective and subjective metrics. This section is very important
 
-[ ] Debt to Equity ratio < 1?
-[ ] Current Ratio > 1.5
-[ ] ROIC > 10%
-[ ] Consistent Growth?
-[ ] Insider buying?
-[ ] Integrity level of management
-[ ] Stable margins
-[ ] low long term debt > 3 yrs revenue? Or net debt / fcf
+<mat-checkbox> Debt to Equity ratio < 1? </mat-checkbox>
+<mat-checkbox> Current Ratio > 1.5</mat-checkbox>
+<mat-checkbox> ROIC > 10%</mat-checkbox>
+<mat-checkbox> Consistent Growth?</mat-checkbox>
+<mat-checkbox> Insider buying?</mat-checkbox>
+<mat-checkbox> Integrity level of management</mat-checkbox>
+<mat-checkbox> Stable margins</mat-checkbox>
+<mat-checkbox> low long term debt > 3 yrs revenue? Or net debt / fcf</mat-checkbox>
 Net Debt / Free Cash Flow This ratio shows you how many years it would take the company to pay down all its debt when it would use all available free cash flow.
 
 <aside> 💡
-
+<mat-form-field>
+<textarea matInput placeholder="Textarea"></textarea>
+</mat-form-field>
 </aside>
 
 MOS
 
 Valuation - It’s much better to be vaguely right than precisely wrong
 
-[ ] P/E Industry avg
-[ ] Price to Book < 1.5
-[ ] Price to FCF < 15
-[ ] Cash per share = assets - liabilities
-[ ] Dividend?
-[ ] PEG ratio (p/e / growth rate) < 1
-[ ] EPS 10 yr Growth
-[ ] Rev 10 yr growth
-[ ] ROIC 10 yr avg
-[ ] Growing EPS?
-[ ] Growing FCF?
-[ ] Growing net income
-[ ] Growing Revenue?
-[ ] Quality of assets
+<mat-checkbox> P/E Industry avg</mat-checkbox>
+<mat-checkbox> Price to Book < 1.5</mat-checkbox>
+<mat-checkbox> Price to FCF < 15</mat-checkbox>
+<mat-checkbox> Cash per share = assets - liabilities</mat-checkbox>
+<mat-checkbox> Dividend?</mat-checkbox>
+<mat-checkbox> PEG ratio (p/e / growth rate) < 1</mat-checkbox>
+<mat-checkbox> EPS 10 yr Growth</mat-checkbox>
+<mat-checkbox> Rev 10 yr growth</mat-checkbox>
+<mat-checkbox> ROIC 10 yr avg</mat-checkbox>
+<mat-checkbox> Growing EPS?</mat-checkbox>
+<mat-checkbox> Growing FCF?</mat-checkbox>
+<mat-checkbox> Growing net income</mat-checkbox>
+<mat-checkbox> Growing Revenue?</mat-checkbox>
+<mat-checkbox> Quality of assets</mat-checkbox>
 P/E Industry avg		Preferred metric by company?
-Price to Book < 1.5		EPS
-Price to FCF < 15		FCF
-Cash per share		
-= assets - liabilities		Revenue
+Cash per share = assets - liabilities		
+Revenue
 Dividend?		Net income?
 PEG ratio (p/e / growth rate) < 1		
-EPS 10 yr Growth		Quality of assets
-Rev 10 yr growth		
-ROIC 10 yr avg		
-<aside> 💡
+Quality of assets
 
+<aside> 💡
+<mat-form-field>
+<textarea matInput placeholder="Textarea"></textarea>
+</mat-form-field>
 </aside>
 
 Thesis (when will value be recognized?)
@@ -121,7 +126,9 @@ Prospects for future growth in market and business
 Event large/global and small
 
 <aside> 💡
-
+<mat-form-field>
+<textarea matInput placeholder="Textarea"></textarea>
+</mat-form-field>
 </aside>
 
 Notes
@@ -193,7 +200,7 @@ export class DetailsInsightsComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private api: ApiService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.calcForm = this.fb.group({
