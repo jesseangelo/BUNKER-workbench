@@ -6,7 +6,20 @@ import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 @Component({
   selector: "research-template",
   template: `
+
+
     <div class="ma3 sans-serif" [formGroup]="calcForm">
+    src/app/details_insights_component/details_insights.component.ts
+      Capable of understanding
+      
+      SCOUR
+
+      Management
+      
+
+      MOS / Price
+
+      Thesis
       <section>
         <h2>Scour for information</h2>
         <mat-form-field class="example-full-width">
@@ -25,6 +38,8 @@ import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
         <h1 class="dark-green">{{ isInSP500 ? "Yup" : "Nope!" }}</h1>
 
         <p>{{ overview?.Description }}</p>
+
+        src/app/details_insights_component/details_insights.component.ts
       </div>
 
       Notes: Numbers Why and what Moat Management Thesis Valuation model
