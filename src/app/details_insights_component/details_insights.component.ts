@@ -28,6 +28,8 @@ import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
       </div>
 
       Notes: Numbers Why and what Moat Management Thesis Valuation model
+      
+      <research-template></research-template>
     </div>
   `,
 })
