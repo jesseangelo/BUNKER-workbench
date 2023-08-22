@@ -19,6 +19,8 @@ import { NetworkInterceptor } from './services/network.interceptor';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ResearchTemplateComponent } from './_features/research_template/research_template.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatDividerModule} from '@angular/material/divider'; 
 
 @NgModule({
   imports: [
@@ -35,6 +37,8 @@ import { ResearchTemplateComponent } from './_features/research_template/researc
     MatFormFieldModule,
     MatCheckboxModule,
     MatExpansionModule,
+    MatToolbarModule,
+    MatDividerModule
   ],
   declarations: [
     AppComponent,

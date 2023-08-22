@@ -1,10 +1,16 @@
+<mat-toolbar color="secondary">
+  <mat-toolbar-row class="flex justify-between"><span>BNKR</span>
+    <span class="flex">
+      <div class="f6">API STATUS <span class="b">{{ apiIsConnected }}</span></div>
+      <div class="ml2">
+        <mat-spinner [diameter]="25"></mat-spinner>
+      </div>
+    </span>
+  </mat-toolbar-row></mat-toolbar>
 <div class="ma3 sans-serif">
-  <section style="height: 30px;" class="flex justify-between">
-    <div>API STATUS {{ apiIsConnected }}</div>
-    <mat-spinner [diameter]="25" *ngIf="loading$ | async"></mat-spinner>
-  </section>
+
   <mat-tab-group dynamicHeight>
-   <mat-tab label="Details Insights">
+    <mat-tab label="Details Insights">
       <details-insights></details-insights>
     </mat-tab>
     <mat-tab label="Dashboard News">
