@@ -11,8 +11,8 @@ export class ApiService {
   isLoading: BehaviorSubject<boolean>;
 
   get endPoint() {
-    // return "http://localhost:8080"
-    return "http://bnkr-env.eba-gakhxzk2.us-west-2.elasticbeanstalk.com"
+    return "http://localhost:8080"
+    // return "http://bnkr-env.eba-gakhxzk2.us-west-2.elasticbeanstalk.com"
   }
   
   isAlive() {
@@ -33,6 +33,12 @@ export class ApiService {
 
   nextEarningsDate(ticker) {
     return this.http.get(`${this.endPoint}/nextearnings?ticker=${ticker}`, {
+      responseType: "text",
+    });
+  }
+
+  roic(ticker) {
+    return this.http.get(`${this.endPoint}/roic?ticker=${ticker}`, {
       responseType: "text",
     });
   }

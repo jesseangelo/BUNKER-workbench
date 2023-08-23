@@ -18,8 +18,8 @@ import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
       </section>
 
       <div class="sans-serif" [formGroup]="calcForm">
-        <h2>Next Earnings</h2>
-        {{ earningsDate }}
+        <h2>ROIC</h2>
+        {{ roic }}
         <h2>Heeeeey, wait a minute. Is this part of the S&P 500??</h2>
 
         <h1 class="dark-green">{{ isInSP500 ? "Yup" : "Nope!" }}</h1>
@@ -38,6 +38,7 @@ export class DetailsInsightsComponent implements OnInit {
   earningsDate = "";
   isInSP500 = null;
   overview = null;
+  roic = "";
 
   constructor(
     private fb: FormBuilder,
@@ -64,16 +65,18 @@ export class DetailsInsightsComponent implements OnInit {
   scour() {
     const t = this.calcForm.controls["tickerToScour"].value;
     console.log("scouring for:", t);
-    this.api.getCompanyOverview(t).subscribe((co: any) => {
-      this.overview = co;
-    });
+    // this.api.getCompanyOverview(t).subscribe((co: any) => {
+    //   this.overview = co;
+    // });
 
-    this.api.isSP500(t).subscribe((is: any) => {
-      this.isInSP500 = is;
-    });
+    // this.api.isSP500(t).subscribe((is: any) => {
+    //   this.isInSP500 = is;
+    // });
 
-    this.api.nextEarningsDate(t).subscribe((e: any) => {
-      this.earningsDate = e;
-    });
+    this.api.roic(t).subscribe((r: any) => this.roic)
+
+    // this.api.nextEarningsDate(t).subscribe((e: any) => {
+    //   this.earningsDate = e;
+    // });
   }
 }
