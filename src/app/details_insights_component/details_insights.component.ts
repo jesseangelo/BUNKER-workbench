@@ -8,27 +8,60 @@ import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
   template: `
     <div class="ma3 sans-serif" [formGroup]="calcForm">
       <section>
-        <h2>Scour for information</h2>
-        <mat-form-field class="example-full-width">
-          <mat-label>Ticker to Scour</mat-label>
-          <input matInput formControlName="tickerToScour" />
-        </mat-form-field>
-        <button mat-button (click)="scour()">Scour</button>
-        <button mat-button (click)="save()">Save</button>
+        <h2>Research</h2>
+        <div>
+          <mat-form-field class="example-full-width mr3">
+            <mat-label>Ticker</mat-label>
+            <input matInput formControlName="tickerToScour" />
+          </mat-form-field>
+          <button
+            mat-raised-button
+            color="primary"
+            class="ml3"
+            (click)="scour()"
+          >
+            Scour
+          </button>
+          <button mat-button color="accent" class="ml3" (click)="save()">
+            Save
+          </button>
+        </div>
       </section>
 
       <div class="sans-serif" [formGroup]="calcForm">
-        <h2>ROIC</h2>
-        {{ roic }}
-        <h2>Heeeeey, wait a minute. Is this part of the S&P 500??</h2>
+        <h3>Key Metrics</h3>
+        <mat-list>
+          <mat-list-item>
+            <h4 class="f5">ROIC</h4>
+            {{ roic }}
+          </mat-list-item>
+          <mat-divider></mat-divider>
 
-        <h1 class="dark-green">{{ isInSP500 ? "Yup" : "Nope!" }}</h1>
+          <mat-list-item>
+            <h4 class="f5">
+              Is S&P 500?<span class="dark-green">{{ isInSP500 }}</span>
+            </h4>
+          </mat-list-item>
+          <mat-divider></mat-divider>
 
-        <p>{{ overview?.Description }}</p>
+          <mat-list-item>
+            <h4 class="f5">Market Cap</h4>
+            <h4></h4>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+
+          <mat-list-item>
+            <h4 class="f5">Overview:&nbsp;</h4>
+            <p>
+              {{ overview?.Description }} This is an example description blah
+              blah
+            </p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+
+        </mat-list>
       </div>
-
-      Notes: Numbers Why and what Moat Management Thesis Valuation model
-      
+      <br />
       <research-template></research-template>
     </div>
   `,
@@ -36,7 +69,7 @@ import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 export class DetailsInsightsComponent implements OnInit {
   calcForm: FormGroup;
   earningsDate = "";
-  isInSP500 = null;
+  isInSP500 = "";
   overview = null;
   roic = "";
 
@@ -69,11 +102,11 @@ export class DetailsInsightsComponent implements OnInit {
     //   this.overview = co;
     // });
 
-    // this.api.isSP500(t).subscribe((is: any) => {
-    //   this.isInSP500 = is;
-    // });
+    this.api.isSP500(t).subscribe((is: any) => {
+      this.isInSP500 = is;
+    });
 
-    this.api.roic(t).subscribe((r: any) => this.roic)
+    this.api.roic(t).subscribe((r: any) => this.roic);
 
     // this.api.nextEarningsDate(t).subscribe((e: any) => {
     //   this.earningsDate = e;

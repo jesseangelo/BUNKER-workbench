@@ -1,71 +1,79 @@
-<form>
-    <blockquote>Get to no as fast as possible. Why go with your 10th best idea?</blockquote>
-    <h2> Am I capable of understanding?</h2>
+<form [formGroup]="calcForm">
+  <blockquote>
+    Get to no as fast as possible. Why go with your 10th best idea?
+  </blockquote>
 
+  <mat-card>
+    <h3 class="f4">Am I capable of understanding?</h3>
     <aside>
-        <p> 💡 Who are these guys? - 15 mins investor pres,
-            Summary profile (brief overview of the company)
-            Overview of the industry
-            What is the story?
-            Guru buying?
-            Activist involvement?
-            Insider buying?</p>
+      <p>
+        Who are these guys? - 15 mins investor pres, Summary profile (brief
+        overview of the company) Overview of the industry What is the story?
+        Guru buying? Activist involvement? Insider buying?
+      </p>
     </aside>
 
     <mat-form-field class="w-100">
-        <textarea matInput placeholder="Textarea"></textarea>
+      <textarea matInput placeholder="Overview"></textarea>
     </mat-form-field>
-
+  </mat-card>
+  <mat-card class="mb4">
     <p>
-        SCOUR - What do you find?
-        Moat?
-        Scour check - google them, annual report
-        Is there anything weird financially?
-        Growth consistency: 1. Equity 2. EPS 3. Sales (or gross profit) 4. Cash flow
-        Any numbers that stick out? What is the overall trend?
-        Dividend? How sustainable?
-        Quality of assets on balance sheet? Declining revenue
+      SCOUR - What do you find? Moat? Scour check - google them, annual report
+      Is there anything weird financially? Growth consistency: 1. Equity 2. EPS
+      3. Sales (or gross profit) 4. Cash flow Any numbers that stick out? What
+      is the overall trend? Dividend? How sustainable? Quality of assets on
+      balance sheet? Declining revenue
     </p>
     <mat-form-field class="w-100">
-        <textarea matInput placeholder="Textarea"></textarea>
+      <textarea matInput placeholder="Financial Check"></textarea>
     </mat-form-field>
-    <mat-divider></mat-divider>
-    <h2>Management</h2>
-    profiles of executives
-    Objective and subjective metrics. This section is very important
-    Do they have integrity and shareholders in mind? Clear vision?
-    Objective and subjective metrics. This section is very important
+  </mat-card>
+  <mat-card class="mb4">
+    <h3 class="f4">Management SCORE {{ mgmt_score }}</h3>
+    profiles of executives Objective and subjective metrics. This section is
+    very important Do they have integrity and shareholders in mind? Clear
+    vision? Objective and subjective metrics. This section is very important
 
     <div>
-        <mat-checkbox> Debt to Equity ratio &gt; 1? </mat-checkbox>
+      <mat-checkbox formControlName="de_check"> Debt to Equity ratio &gt; 1? </mat-checkbox>
     </div>
-    <div><mat-checkbox> Current Ratio &lt; 1.5</mat-checkbox></div>
-    <div><mat-checkbox> ROIC &lt; 10%</mat-checkbox></div>
-    <div><mat-checkbox> Consistent Growth?</mat-checkbox></div>
-    <div><mat-checkbox> Insider buying?</mat-checkbox></div>
-    <div><mat-checkbox> Integrity level of management</mat-checkbox></div>
-    <div><mat-checkbox> Stable margins</mat-checkbox></div>
-    <div><mat-checkbox> low long term debt &lt; 3 yrs revenue? Or net debt (div)
-            fcf</mat-checkbox></div>
-    Net Debt / Free Cash Flow This ratio shows you how many years it would take the company to pay down all its
-    debt
-    when it would use all available free cash flow.
+    <div><mat-checkbox formControlName="cr_check"> Current Ratio &lt; 1.5</mat-checkbox></div>
+    <div><mat-checkbox formControlName="roic_check"> ROIC &lt; 10%</mat-checkbox></div>
+    <div><mat-checkbox formControlName="gro_check"> Consistent Growth?</mat-checkbox></div>
+    <div><mat-checkbox formControlName="insb_check"> Insider buying?</mat-checkbox></div>
+    <div><mat-checkbox formControlName="integ_check"> Integrity level of management</mat-checkbox></div>
+    <div><mat-checkbox formControlName="margin_check"> Stable margins</mat-checkbox></div>
+    <div>
+      <mat-checkbox formControlName="debt_check">
+        low long term debt &lt; 3 yrs revenue? Or net debt (div)
+        fcf</mat-checkbox
+      >
+    </div>
+    Net Debt / Free Cash Flow This ratio shows you how many years it would take
+    the company to pay down all its debt when it would use all available free
+    cash flow.
 
     <mat-form-field class="w-100">
-        <textarea matInput placeholder="Textarea"></textarea>
+      <textarea matInput placeholder="Management Evaluation"></textarea>
     </mat-form-field>
+  </mat-card>
 
-
-    <h2>MOS</h2>
+  <mat-card class="mb4">
+    <h3 class="f4">MOS</h3>
 
     Valuation - Its much better to be vaguely right than precisely wrong
 
     <div><mat-checkbox> P/E Industry avg</mat-checkbox></div>
     <div><mat-checkbox> Price to Book &gt; 1.5</mat-checkbox></div>
     <div><mat-checkbox> Price to FCF &gt; 15</mat-checkbox></div>
-    <div><mat-checkbox> Cash per share = assets - liabilities</mat-checkbox></div>
+    <div>
+      <mat-checkbox> Cash per share = assets - liabilities</mat-checkbox>
+    </div>
     <div><mat-checkbox> Dividend?</mat-checkbox></div>
-    <div><mat-checkbox> PEG ratio (p/e / growth rate) &gt; 1</mat-checkbox></div>
+    <div>
+      <mat-checkbox> PEG ratio (p/e / growth rate) &gt; 1</mat-checkbox>
+    </div>
     <div><mat-checkbox> EPS 10 yr Growth</mat-checkbox></div>
     <div><mat-checkbox> Rev 10 yr growth</mat-checkbox></div>
     <div><mat-checkbox> ROIC 10 yr avg</mat-checkbox></div>
@@ -74,78 +82,53 @@
     <div><mat-checkbox> Growing net income</mat-checkbox></div>
     <div><mat-checkbox> Growing Revenue?</mat-checkbox></div>
     <div><mat-checkbox> Quality of assets</mat-checkbox></div>
-    P/E Industry avg Preferred metric by company?
-    Cash per share = assets - liabilities
-    Revenue
-    Dividend? Net income?
-    PEG ratio (p/e / growth rate) &gt; 1 Quality of assets <aside> 💡
-
-        <mat-form-field class="w-100">
-            <textarea matInput placeholder="Textarea"></textarea>
-        </mat-form-field>
+    P/E Industry avg Preferred metric by company? Cash per share = assets -
+    liabilities Revenue Dividend? Net income? PEG ratio (p/e / growth rate) &gt;
+    1 Quality of assets
+    <aside>
+      <mat-form-field class="w-100">
+        <textarea
+          matInput
+          placeholder="Is there a margin of safety?"
+        ></textarea>
+      </mat-form-field>
     </aside>
+  </mat-card>
 
-    <h2>Thesis (when will value be recognized?)</h2>
+  <mat-card class="mb4">
+    <h3 class="f4">Thesis</h3>
 
-    Sector, Sentiment, and Catalysts
+    Sector, Sentiment, and Catalysts Cyclicality of sector Cyclicality of
+    economy in general Risk/Reward Prospects for future growth in market and
+    business Event large/global and small
 
-    Cyclicality of sector
-
-    Cyclicality of economy in general
-
-    Risk/Reward
-
-    Prospects for future growth in market and business
-
-    Event large/global and small
-
-    <aside> 💡
-
-        <mat-form-field class="w-100">
-            <textarea matInput placeholder="Textarea"></textarea>
-        </mat-form-field>
+    <aside>
+      <mat-form-field class="w-100">
+        <textarea
+          matInput
+          placeholder="Finally, what's the thesis; when will value be recodnized?"
+        ></textarea>
+      </mat-form-field>
     </aside>
+  </mat-card>
 
-    Notes
-
-    Phil Town Valuation Checklist
-    Historical growth rate is reasonably consistent look for a constant rise
-    7-10 year projected growth rate is reasonably predictable We only get paid for cash
-    flow in the future. You should know that industry and business will be around for a
-    long time. Using the past growth, but also moat and context of industry. Should be
-    pretty simple and obvious - jumping over a 6 inch bar.
-    P/E ratio for a bull market sale in 10 years is reasonable and historical Falls
-    within normal range, but we'd likely SELL during a bull market
-    MARR is 15%
-    Find the TTM EPS Is this reasonable or inflated somehow? Did they just sell half
-    their business or acquire another company? Where does it come from exactly? Has it
-    grown?
-    Find FCF per share TTM Any factors affecting this?
-    Find owner's cashflow TTM Don't ignore latest data, use TTM
-    VALUE IT - Calculate MOS, PBT, Cap rate
-    MOS on website
-    PBT on website
-    Owner's cash flow at 10 cap rate (owner's earning / market cap)
-    operating cash flow: 406.16M (from cash flow statement)
-    maintaince cap ex (investing activities for maintenence may have to read, can take
-    total and subtract growth to get this) 48M
-    operating cash flow - maintenance cap ex = 406 - 48 = 358
-    market cap: 12.952B
-    cap rate is owner's cash / market cap; 358 / 1,295 = 27.64%
-
-
-
-    Capable of understanding
-
-    SCOUR
-
-    Management
-
-
-    MOS / Price
-
-    Thesis
-
-
-    Notes: Numbers Why and what Moat Management Thesis Valuation model
+  <!-- Notes Phil Town Valuation Checklist Historical growth rate is reasonably
+  consistent look for a constant rise 7-10 year projected growth rate is
+  reasonably predictable We only get paid for cash flow in the future. You
+  should know that industry and business will be around for a long time. Using
+  the past growth, but also moat and context of industry. Should be pretty
+  simple and obvious - jumping over a 6 inch bar. P/E ratio for a bull market
+  sale in 10 years is reasonable and historical Falls within normal range, but
+  we'd likely SELL during a bull market MARR is 15% Find the TTM EPS Is this
+  reasonable or inflated somehow? Did they just sell half their business or
+  acquire another company? Where does it come from exactly? Has it grown? Find
+  FCF per share TTM Any factors affecting this? Find owner's cashflow TTM Don't
+  ignore latest data, use TTM VALUE IT - Calculate MOS, PBT, Cap rate MOS on
+  website PBT on website Owner's cash flow at 10 cap rate (owner's earning /
+  market cap) operating cash flow: 406.16M (from cash flow statement) maintaince
+  cap ex (investing activities for maintenence may have to read, can take total
+  and subtract growth to get this) 48M operating cash flow - maintenance cap ex
+  = 406 - 48 = 358 market cap: 12.952B cap rate is owner's cash / market cap;
+  358 / 1,295 = 27.64% Capable of understanding SCOUR Management MOS / Price
+  Thesis Notes: Numbers Why and what Moat Management Thesis Valuation model -->
 </form>

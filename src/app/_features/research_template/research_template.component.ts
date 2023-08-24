@@ -2,6 +2,7 @@ import { ApiService } from "../../services/api.service";
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { tap } from "rxjs";
 
 @Component({
   selector: "research-template",
@@ -12,6 +13,7 @@ export class ResearchTemplateComponent implements OnInit {
   earningsDate = "";
   isInSP500 = null;
   overview = null;
+  mgmt_score = 25;
 
   constructor(
     private fb: FormBuilder,
@@ -20,9 +22,27 @@ export class ResearchTemplateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.calcForm = this.fb.group({
-    //   tickerToScour: new FormControl(""),
-    // });
+    this.calcForm = this.fb.group({
+      de_check: new FormControl(""),
+      cr_check: new FormControl(""),
+      roic_check: new FormControl(""),
+      gro_check: new FormControl(""),
+      insb_check: new FormControl(""),
+      integ_check: new FormControl(""),
+      margin_check: new FormControl(""),
+      debt_check: new FormControl(""),
+    })
+    
+    this.calcForm.valueChanges.pipe().subscribe((t) => {
+      let total = 0;
+      let count = 0;
+      for (const [key, value] of Object.entries(t)) {
+        total++;
+        value == true ? count++ : null;
+        console.log(`${key}: ${value}`);
+      }
+      this.mgmt_score = Math.round((count / total) * 100);
+    });
   }
 
   save() {

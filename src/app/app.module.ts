@@ -21,6 +21,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ResearchTemplateComponent } from './_features/research_template/research_template.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatDividerModule} from '@angular/material/divider'; 
+import { MatCardModule} from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   imports: [
@@ -38,7 +40,9 @@ import {MatDividerModule} from '@angular/material/divider';
     MatCheckboxModule,
     MatExpansionModule,
     MatToolbarModule,
-    MatDividerModule
+    MatDividerModule,
+    MatCardModule,
+    MatListModule
   ],
   declarations: [
     AppComponent,
