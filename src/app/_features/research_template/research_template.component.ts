@@ -1,6 +1,6 @@
 import { ApiService } from "../../services/api.service";
 import { HttpClient } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { tap } from "rxjs";
 
@@ -9,17 +9,17 @@ import { tap } from "rxjs";
   templateUrl: `research_template.component.html`,
 })
 export class ResearchTemplateComponent implements OnInit {
+  @Input() overview;
   calcForm: FormGroup;
   earningsDate = "";
   isInSP500 = null;
-  overview = null;
   mgmt_score = 25;
 
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
     private api: ApiService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.calcForm = this.fb.group({
@@ -31,8 +31,8 @@ export class ResearchTemplateComponent implements OnInit {
       integ_check: new FormControl(""),
       margin_check: new FormControl(""),
       debt_check: new FormControl(""),
-    })
-    
+    });
+
     this.calcForm.valueChanges.pipe().subscribe((t) => {
       let total = 0;
       let count = 0;
@@ -49,18 +49,20 @@ export class ResearchTemplateComponent implements OnInit {
     // console.log(this.calcForm.controls["tickerToScour"].value);
     // const t = this.calcForm.controls["tickerToScour"].value;
     // const body = { ticker: t, earningsDate: this.earningsDate };
-
     // this.http
     //   .post(`${this.api.endPoint}/update`, body)
     //   .subscribe(() => console.log("api called"));
   }
 
   scour() {
-    // const t = this.calcForm.controls["tickerToScour"].value;
-    // console.log("scouring for:", t);
-    // this.api.getCompanyOverview(t).subscribe((co: any) => {
-    //   this.overview = co;
-    // });
+    const t = this.calcForm.controls["tickerToScour"].value;
+    console.log("scouring for:", t);
+    this.api
+      .getCompanyOverview(t)
+      .pipe(tap(console.log))
+      .subscribe((co: any) => {
+        this.overview = co;
+      });
 
     // this.api.isSP500(t).subscribe((is: any) => {
     //   this.isInSP500 = is;

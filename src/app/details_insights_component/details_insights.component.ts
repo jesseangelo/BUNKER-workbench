@@ -2,6 +2,7 @@ import { ApiService } from "./../services/api.service";
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { tap } from "rxjs";
 
 @Component({
   selector: "details-insights",
@@ -62,7 +63,7 @@ import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
         </mat-list>
       </div>
       <br />
-      <research-template></research-template>
+      <research-template [overview]="overview"></research-template>
     </div>
   `,
 })
@@ -98,9 +99,9 @@ export class DetailsInsightsComponent implements OnInit {
   scour() {
     const t = this.calcForm.controls["tickerToScour"].value;
     console.log("scouring for:", t);
-    // this.api.getCompanyOverview(t).subscribe((co: any) => {
-    //   this.overview = co;
-    // });
+    this.api.getCompanyOverview(t).pipe(tap(console.log)).subscribe((co: any) => {
+      this.overview = co;
+    });
 
     this.api.isSP500(t).subscribe((is: any) => {
       this.isInSP500 = is;
