@@ -28,6 +28,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { CashFlowComponent } from './_features/cash_flow/cash_flow.component';
 import { NumberSuffixPipe } from './services/number-suffix.pipe';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import { NumberSuffixPipe } from './services/number-suffix.pipe';
     MatDividerModule,
     MatCardModule,
     MatListModule,
-    MatTableModule
+    MatTableModule,
+    AgGridModule
   ],
   declarations: [
     AppComponent,
