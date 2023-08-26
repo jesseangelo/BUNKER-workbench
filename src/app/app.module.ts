@@ -1,3 +1,5 @@
+import { IncomeStatementComponent } from './_features/income_statement/income_statement.component';
+import { BalanceSheetComponent } from './_features/balance_sheet/balance_sheet.component';
 import { ApiService } from './services/api.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -23,6 +25,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatDividerModule} from '@angular/material/divider'; 
 import { MatCardModule} from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
+import { CashFlowComponent } from './_features/cash_flow/cash_flow.component';
+import { NumberSuffixPipe } from './services/number-suffix.pipe';
 
 @NgModule({
   imports: [
@@ -42,7 +47,8 @@ import { MatListModule } from '@angular/material/list';
     MatToolbarModule,
     MatDividerModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    MatTableModule
   ],
   declarations: [
     AppComponent,
@@ -50,7 +56,11 @@ import { MatListModule } from '@angular/material/list';
     DashboardNewsComponent,
     PortfolioWatchlistComponent,
     DetailsInsightsComponent,
-    ResearchTemplateComponent
+    ResearchTemplateComponent,
+    BalanceSheetComponent,
+    CashFlowComponent,
+    IncomeStatementComponent,
+    NumberSuffixPipe
   ],
   bootstrap: [AppComponent],
   providers: [

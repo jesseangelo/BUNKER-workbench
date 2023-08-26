@@ -3,14 +3,15 @@
     <mat-toolbar-row class="flex justify-between"
       ><span>BNKR</span>
       <span class="flex">
+        <div class="mr2">
+          <mat-spinner *ngIf="loading$ | async" [diameter]="25"></mat-spinner>
+        </div>
         <div class="f6">
           API STATUS <span class="b">{{ apiIsConnected }}</span>
         </div>
-        <div class="ml2">
-          <mat-spinner [diameter]="25"></mat-spinner>
-        </div>
-      </span> </mat-toolbar-row
-  ></mat-toolbar>
+      </span>
+    </mat-toolbar-row></mat-toolbar
+  >
   <div class="flex bg-lightest-blue">
     <div class="fl w-20"></div>
     <div class="fl w-60">

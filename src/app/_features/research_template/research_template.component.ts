@@ -7,6 +7,14 @@ import { tap } from "rxjs";
 @Component({
   selector: "research-template",
   templateUrl: `research_template.component.html`,
+  styles: [
+    `
+      .mat-card div {
+        display: flex;
+        justify-content: space-between;
+      }
+    `,
+  ],
 })
 export class ResearchTemplateComponent implements OnInit {
   @Input() overview;

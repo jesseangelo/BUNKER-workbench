@@ -6,66 +6,15 @@ import { tap } from "rxjs";
 
 @Component({
   selector: "details-insights",
-  template: `
-    <div class="ma3 sans-serif" [formGroup]="calcForm">
-      <section>
-        <h2>Research</h2>
-        <div>
-          <mat-form-field class="example-full-width mr3">
-            <mat-label>Ticker</mat-label>
-            <input matInput formControlName="tickerToScour" />
-          </mat-form-field>
-          <button
-            mat-raised-button
-            color="primary"
-            class="ml3"
-            (click)="scour()"
-          >
-            Scour
-          </button>
-          <button mat-button color="accent" class="ml3" (click)="save()">
-            Save
-          </button>
-        </div>
-      </section>
-
-      <div class="sans-serif" [formGroup]="calcForm">
-        <h3>Key Metrics</h3>
-        <mat-list>
-          <mat-list-item>
-            <h4 class="f5">ROIC</h4>
-            {{ roic }}
-          </mat-list-item>
-          <mat-divider></mat-divider>
-
-          <mat-list-item>
-            <h4 class="f5">
-              Is S&P 500?<span class="dark-green">{{ isInSP500 }}</span>
-            </h4>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-
-          <mat-list-item>
-            <h4 class="f5">Market Cap</h4>
-            <h4></h4>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-
-          <mat-list-item>
-            <h4 class="f5">Overview:&nbsp;</h4>
-            <p>
-              {{ overview?.Description }} This is an example description blah
-              blah
-            </p>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-
-        </mat-list>
-      </div>
-      <br />
-      <research-template [overview]="overview"></research-template>
-    </div>
-  `,
+  templateUrl: "./details_insights.component.html",
+  styles: [
+    `
+      ::ng-deep mat-list-item .mat-list-item-content {
+        display: flex;
+        justify-content: space-between;
+      }
+    `,
+  ],
 })
 export class DetailsInsightsComponent implements OnInit {
   calcForm: FormGroup;
@@ -73,6 +22,7 @@ export class DetailsInsightsComponent implements OnInit {
   isInSP500 = "";
   overview = null;
   roic = "";
+  ticker = ""
 
   constructor(
     private fb: FormBuilder,
@@ -97,20 +47,21 @@ export class DetailsInsightsComponent implements OnInit {
   }
 
   scour() {
-    const t = this.calcForm.controls["tickerToScour"].value;
-    console.log("scouring for:", t);
-    this.api.getCompanyOverview(t).pipe(tap(console.log)).subscribe((co: any) => {
+    this.ticker = this.calcForm.controls["tickerToScour"].value;
+    console.log("scouring for:", this.ticker);
+    this.api.getCompanyOverview(this.ticker).pipe(tap(console.log)).subscribe((co: any) => {
       this.overview = co;
     });
 
-    this.api.isSP500(t).subscribe((is: any) => {
-      this.isInSP500 = is;
+    this.api.isSP500(this.ticker).subscribe((is: any) => {
+      this.isInSP500 = is ? 'Yes' : 'No';
     });
 
-    this.api.roic(t).subscribe((r: any) => this.roic);
+    this.api.roic(this.ticker).subscribe((r: any) => this.roic);
 
     // this.api.nextEarningsDate(t).subscribe((e: any) => {
     //   this.earningsDate = e;
     // });
   }
+
 }

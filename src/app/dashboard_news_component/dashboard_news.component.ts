@@ -29,9 +29,9 @@ export class DashboardNewsComponent implements OnInit {
   fearGreed;
   constructor(private api: ApiService) {}
   ngOnInit() {
-    // this.api.fearGreed().subscribe((response: any) => {
-    //   console.log(response);
-    //   this.fearGreed = response;
-    // });
+    this.api.fearGreed().subscribe((response: any) => {
+      console.log(response);
+      this.fearGreed = response;
+    });
   }
 }

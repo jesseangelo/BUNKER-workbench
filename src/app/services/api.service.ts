@@ -60,6 +60,19 @@ export class ApiService {
     return this.http.get(`${this.endPoint}/fearGreed`);
   }
 
+  balanceSheet(ticker) {
+    console.log('getting balance sheet for', ticker)
+    return this.http.get(`${this.endPoint}/balanceSheet?ticker=${ticker}`)
+  }
+
+  cashFlow(ticker) {
+    return this.http.get(`${this.endPoint}/cashFlow?ticker=${ticker}`)
+  }
+
+  incomeStatement(ticker) {
+    return this.http.get(`${this.endPoint}/incomeStatement?ticker=${ticker}`)
+  }
+
   // baseGet(URL) {
   //   this.isLoading.next(true);
   //   return this.http.get(URL).pipe()
