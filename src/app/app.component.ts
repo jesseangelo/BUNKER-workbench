@@ -1,11 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { repeat } from "rxjs";
+import { ApiService } from "./services/api.service";
+import { LoadingService } from "./services/loading.service";
 
 @Component({
-  selector: 'my-app',
-  templateUrl: './app.component.html',
+  selector: "bnkr-app",
+  templateUrl: "./app.component.html",
 })
 export class AppComponent implements OnInit {
-  constructor() {}
+  apiIsConnected = "";
+  loading$ = this.loader.loading$
 
-  ngOnInit() {}
+  constructor(private api: ApiService, public loader: LoadingService) {}  
+
+  ngOnInit() {
+    this.api
+      .isAlive()
+      .pipe(repeat({ delay: 100000 }))
+      .subscribe((connected: boolean) => {
+        console.log("con", connected);
+        this.apiIsConnected = connected ? "Connected" : "Disconnected";
+      });
+  }
 }
