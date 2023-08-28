@@ -23,8 +23,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ResearchTemplateComponent } from './_features/research_template/research_template.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatDividerModule} from '@angular/material/divider'; 
-import { MatCardModule} from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { CashFlowComponent } from './_features/cash_flow/cash_flow.component';
@@ -52,7 +52,6 @@ import { AgGridModule } from 'ag-grid-angular';
     MatListModule,
     MatTableModule,
     AgGridModule,
-    FinancialStatementComponent
 
   ],
   declarations: [
@@ -65,6 +64,7 @@ import { AgGridModule } from 'ag-grid-angular';
     BalanceSheetComponent,
     CashFlowComponent,
     IncomeStatementComponent,
+    FinancialStatementComponent,
     NumberSuffixPipe,
   ],
   bootstrap: [AppComponent],
