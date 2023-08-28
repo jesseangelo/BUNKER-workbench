@@ -21,7 +21,7 @@ export class ResearchTemplateComponent implements OnInit {
   calcForm: FormGroup;
   earningsDate = "";
   isInSP500 = null;
-  mgmt_score = 25;
+  mgmt_score = 0;
 
   constructor(
     private fb: FormBuilder,

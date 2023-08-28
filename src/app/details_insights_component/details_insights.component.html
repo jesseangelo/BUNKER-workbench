@@ -1,5 +1,5 @@
 <div class="ma3 sans-serif" [formGroup]="calcForm">
-   <section>
+  <section>
     <h2>Research</h2>
     <div>
       <mat-form-field class="example-full-width mr3">
@@ -21,20 +21,20 @@
       {{ overview?.Description }}
     </p>
     <mat-divider></mat-divider>
-    <h3>Key Metrics</h3>
+    <h4 class="f5">Key Metrics</h4>
     <mat-list>
       <mat-list-item>
         <h4 class="f5">ROIC</h4>
-        {{ roic }}
+        <h4 class="calisto f4">{{ roic }}</h4>
       </mat-list-item>
+      <!-- https://www.alphaspread.com/security/nyse/epam/profitability/ratio/return-on-invested-capital -->
       <mat-divider></mat-divider>
 
       <mat-list-item>
         <h4 class="f5">
           Is S&P 500?
-          
         </h4>
-        <span class="dark-green">{{ isInSP500 }}</span>
+        <h4 class="calisto f4">{{ isInSP500 }}</h4>
       </mat-list-item>
       <mat-divider></mat-divider>
 
@@ -44,13 +44,13 @@
       </mat-list-item>
       <mat-divider></mat-divider>
 
-      <mat-list-item>
+      <!-- <mat-list-item>
         <h4 class="f5">PE Ratio</h4>
         <h4>{{ overview?.PERatio }}</h4>
-      </mat-list-item>
+      </mat-list-item> -->
       <mat-divider></mat-divider>
     </mat-list>
-    
+
   </div>
   <br />
   <mat-tab-group dynamicHeight>
