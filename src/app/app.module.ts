@@ -1,3 +1,4 @@
+import { FinancialStatementComponent } from './_features/financial-statement/financial-statement.component';
 import { IncomeStatementComponent } from './_features/income_statement/income_statement.component';
 import { BalanceSheetComponent } from './_features/balance_sheet/balance_sheet.component';
 import { ApiService } from './services/api.service';
@@ -50,7 +51,9 @@ import { AgGridModule } from 'ag-grid-angular';
     MatCardModule,
     MatListModule,
     MatTableModule,
-    AgGridModule
+    AgGridModule,
+    FinancialStatementComponent
+
   ],
   declarations: [
     AppComponent,
@@ -62,7 +65,7 @@ import { AgGridModule } from 'ag-grid-angular';
     BalanceSheetComponent,
     CashFlowComponent,
     IncomeStatementComponent,
-    NumberSuffixPipe
+    NumberSuffixPipe,
   ],
   bootstrap: [AppComponent],
   providers: [
