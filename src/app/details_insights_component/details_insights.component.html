@@ -15,6 +15,7 @@
     </div>
   </section>
 
+  <section *ngIf="ticker">
   <div class="sans-serif" [formGroup]="calcForm">
     <h4 class="f5">Overview:&nbsp;</h4>
     <p>
@@ -67,4 +68,7 @@
       <cash-flow [ticker]="ticker"></cash-flow>
     </mat-tab>
   </mat-tab-group>
+</section>
+
+
 </div>
