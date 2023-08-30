@@ -14,7 +14,11 @@
     </aside>
 
     <mat-form-field class="w-100">
-      <textarea matInput placeholder="Overview"></textarea>
+      <textarea
+        matInput
+        formControlName="eval_overview"
+        placeholder="Overview"
+      ></textarea>
     </mat-form-field>
   </mat-card>
   <mat-card class="mb4">
@@ -25,25 +29,47 @@
       is the overall trend? Dividend? How sustainable? Quality of assets on
       balance sheet? Declining revenue
     </p>
-    <div><mat-checkbox> Growing EPS?</mat-checkbox></div>
-    <div><mat-checkbox> Growing FCF?</mat-checkbox></div>
-    <div><mat-checkbox> Growing net income</mat-checkbox></div>
-    <div><mat-checkbox> Growing Revenue?</mat-checkbox></div>
-    <div><mat-checkbox> EPS 10 yr Growth</mat-checkbox></div>
-    <div><mat-checkbox> Rev 10 yr growth</mat-checkbox></div>
-    <div><mat-checkbox> ROIC 10 yr avg</mat-checkbox></div>
-    <div><mat-checkbox> Quality of assets</mat-checkbox></div>
     <div>
-      <mat-checkbox> Cash per share = assets - liabilities</mat-checkbox>
+      <mat-checkbox formControlName="gr_fcf__check"> Growing FCF?</mat-checkbox>
     </div>
     <div>
-      <mat-checkbox> Dividend?</mat-checkbox>
+      <mat-checkbox formControlName="gr_netincome_check">
+        Growing net income</mat-checkbox
+      >
+    </div>
+    <div>
+      <mat-checkbox formControlName="gr_revenue_check">
+        Growing Revenue?</mat-checkbox
+      >
+    </div>
+    <div>
+      EPS 10 yr Growth <input matInput formControlName="gr_eps_check" />
+    </div>
+    <div>Rev 10 yr growth <input matInput formControlName="_check" /></div>
+    <div>
+      <mat-checkbox formControlName="roic_check"> ROIC 10 yr avg</mat-checkbox>
+    </div>
+    <div>
+      <mat-checkbox formControlName="asset_check">
+        Quality of assets</mat-checkbox
+      >
+    </div>
+    <div>
+      <mat-checkbox formControlName="case_per_share_check">
+        Cash per share = assets - liabilities</mat-checkbox
+      >
+    </div>
+    <div>
+      <mat-checkbox formControlName="divident_check"> Dividend?</mat-checkbox>
       <span>{{ overview?.DividendPerShare }}</span>
     </div>
     <mat-form-field class="w-100">
-      <textarea matInput placeholder="Financial Check"></textarea>
+      <textarea
+        matInput
+        formControlName="eval_financial"
+        placeholder="Financial Check"
+      ></textarea>
     </mat-form-field>
-
   </mat-card>
   <mat-card class="mb4">
     <h3 class="f4">Management SCORE {{ mgmt_score }}</h3>
@@ -58,37 +84,46 @@
     </div>
     <div>
       <mat-checkbox formControlName="cr_check">
-        Current Ratio &lt; 1.5</mat-checkbox>
+        Current Ratio &lt; 1.5</mat-checkbox
+      >
     </div>
     <div>
       <mat-checkbox formControlName="roic_check"> ROIC &lt; 10%</mat-checkbox>
     </div>
     <div>
       <mat-checkbox formControlName="gro_check">
-        Consistent Growth?</mat-checkbox>
+        Consistent Growth?</mat-checkbox
+      >
     </div>
     <div>
       <mat-checkbox formControlName="insb_check"> Insider buying?</mat-checkbox>
     </div>
     <div>
       <mat-checkbox formControlName="integ_check">
-        Integrity level of management</mat-checkbox>
+        Integrity level of management</mat-checkbox
+      >
     </div>
     <div>
       <mat-checkbox formControlName="margin_check">
-        Stable margins</mat-checkbox>
+        Stable margins</mat-checkbox
+      >
     </div>
     <div>
       <mat-checkbox formControlName="debt_check">
         low long term debt &lt; 3 yrs revenue? Or net debt (div)
-        fcf</mat-checkbox>
+        fcf</mat-checkbox
+      >
     </div>
     Net Debt / Free Cash Flow This ratio shows you how many years it would take
     the company to pay down all its debt when it would use all available free
     cash flow.
 
     <mat-form-field class="w-100">
-      <textarea matInput placeholder="Management Evaluation"></textarea>
+      <textarea
+        matInput
+        formControlName="eval_mgmt"
+        placeholder="Management Evaluation"
+      ></textarea>
     </mat-form-field>
   </mat-card>
 
@@ -97,21 +132,37 @@
 
     Valuation - Its much better to be vaguely right than precisely wrong
 
-    <div><mat-checkbox> P/E Industry avg</mat-checkbox></div>
     <div>
-      <mat-checkbox> Price to Book &gt; 1.5</mat-checkbox>
+      <mat-checkbox formControlName="pe_vs_industry_check">
+        P/E Industry avg</mat-checkbox
+      >
+    </div>
+    <div>
+      <mat-checkbox formControlName="price_to_book_check">
+        Price to Book &gt; 1.5</mat-checkbox
+      >
       <span>{{ overview?.PriceToBookRatio }}</span>
     </div>
-    <div><mat-checkbox> Price to FCF &gt; 15</mat-checkbox></div>
+    <div>
+      <mat-checkbox formControlName="price_to_fcf_check">
+        Price to FCF &gt; 15</mat-checkbox
+      >
+    </div>
 
     <div>
-      <mat-checkbox> PEG ratio (p/e / growth rate) &gt; 1</mat-checkbox>
+      <mat-checkbox formControlName="peg_ratio_check">
+        PEG ratio (p/e / growth rate) &gt; 1</mat-checkbox
+      >
       <span>{{ overview?.PEGRatio }}</span>
     </div>
     Preferred metric by company? Quality of assets
     <aside>
       <mat-form-field class="w-100">
-        <textarea matInput placeholder="Is there a margin of safety?"></textarea>
+        <textarea
+          matInput
+          formControlName="eval_mos"
+          placeholder="Is there a margin of safety?"
+        ></textarea>
       </mat-form-field>
     </aside>
   </mat-card>
@@ -125,7 +176,11 @@
 
     <aside>
       <mat-form-field class="w-100">
-        <textarea matInput placeholder="Finally, what's the thesis; when will value be recodnized?"></textarea>
+        <textarea
+          formControlName="eval_thesis"
+          matInput
+          placeholder="Finally, what's the thesis; when will value be recodnized?"
+        ></textarea>
       </mat-form-field>
     </aside>
   </mat-card>

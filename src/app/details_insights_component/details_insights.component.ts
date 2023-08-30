@@ -22,7 +22,8 @@ export class DetailsInsightsComponent implements OnInit {
   isInSP500 = "";
   overview = null;
   roic = "";
-  ticker = ""
+  ticker = "";
+  researchFormVals = null;
 
   constructor(
     private fb: FormBuilder,
@@ -39,22 +40,37 @@ export class DetailsInsightsComponent implements OnInit {
   save() {
     console.log(this.calcForm.controls["tickerToScour"].value);
     const t = this.calcForm.controls["tickerToScour"].value;
-    const body = { ticker: t, earningsDate: this.earningsDate };
+    // const data = {
+    //   ticker: this.ticker,
+    //   research: {
+    //     ...this.researchFormVals,
+    //   },
+    // };
+    // console.log("getting ready to save", data);
+    const body = { 
+      ticker: {
+        ...this.researchFormVals,
+      },
+     };
+     console.log("getting ready to save", body);
 
-    this.http
-      .post(`${this.api.endPoint}/update`, body)
-      .subscribe(() => console.log("api called"));
+    // this.http
+    //   .post(`${this.api.endPoint}/update`, body)
+    //   .subscribe(() => console.log("api called"));
   }
 
   scour() {
     this.ticker = this.calcForm.controls["tickerToScour"].value;
     console.log("scouring for:", this.ticker);
-    this.api.getCompanyOverview(this.ticker).pipe(tap(console.log)).subscribe((co: any) => {
-      this.overview = co;
-    });
+    this.api
+      .getCompanyOverview(this.ticker)
+      .pipe(tap(console.log))
+      .subscribe((co: any) => {
+        this.overview = co;
+      });
 
     this.api.isSP500(this.ticker).subscribe((is: any) => {
-      this.isInSP500 = is ? 'Yes' : 'No';
+      this.isInSP500 = is ? "Yes" : "No";
     });
 
     this.api.roic(this.ticker).subscribe((r: any) => this.roic);
@@ -64,4 +80,8 @@ export class DetailsInsightsComponent implements OnInit {
     // });
   }
 
+  templateFormUpdated($event) {
+    // console.log('form', $event)
+    this.researchFormVals = $event;
+  }
 }
