@@ -18,6 +18,7 @@ import { tap } from "rxjs";
 })
 export class ResearchTemplateComponent implements OnInit {
   @Input() overview;
+  @Input() existingData;
   @Output() onFormGroupChange = new EventEmitter<Object>();
   calcForm: FormGroup;
   earningsDate = "";
@@ -74,5 +75,14 @@ export class ResearchTemplateComponent implements OnInit {
       // }
       // this.mgmt_score = Math.round((count / total) * 100);
     });
+
+    console.log('ex data', this.existingData)
+    this.calcForm.patchValue(this.existingData)
+  }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    
   }
 }

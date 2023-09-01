@@ -49,7 +49,7 @@
     <br />
     <mat-tab-group dynamicHeight>
       <mat-tab label="Checklist">
-        <!-- <research-template [overview]="overview" (onFormGroupChange)="templateFormUpdated($event)"></research-template> -->
+        <research-template [overview]="overview" [existingData]="evaluation" (onFormGroupChange)="templateFormUpdated($event)"></research-template>
       </mat-tab>
       <mat-tab label="Income Statement">
         <income-statement [ticker]="ticker"></income-statement>

@@ -2,7 +2,7 @@ import { ApiService } from "./../services/api.service";
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
-import { tap } from "rxjs";
+import { distinctUntilChanged, tap } from "rxjs";
 
 @Component({
   selector: "details-insights",
@@ -24,6 +24,8 @@ export class DetailsInsightsComponent implements OnInit {
   roic = "";
   ticker = "";
   researchFormVals = null;
+  companies = []
+  evaluation = ''
 
   constructor(
     private fb: FormBuilder,
@@ -35,33 +37,54 @@ export class DetailsInsightsComponent implements OnInit {
     this.calcForm = this.fb.group({
       tickerToScour: new FormControl(""),
     });
+    this.calcForm
+      .get("tickerToScour")
+      .valueChanges.pipe(distinctUntilChanged())
+      .subscribe((value) => {
+        this.calcForm.get("tickerToScour").patchValue(value.toUpperCase());
+      });
+
+      this.getCompanies()
+  }
+
+  getCompanies() {
+    this.api.getCompanies().subscribe((c: any) => {
+      this.companies = c;
+      console.log(`Companies loaded: ${this.companies}`);
+    });
   }
 
   save() {
     console.log(this.calcForm.controls["tickerToScour"].value);
     const t = this.calcForm.controls["tickerToScour"].value;
-    // const data = {
-    //   ticker: this.ticker,
-    //   research: {
-    //     ...this.researchFormVals,
-    //   },
-    // };
-    // console.log("getting ready to save", data);
-    const body = { 
-      ticker: {
+    const body = {
+      ticker: t,
+      evaluation: {
         ...this.researchFormVals,
       },
-     };
-     console.log("getting ready to save", body);
+    };
+    console.log("getting ready to save", body);
 
-    // this.http
-    //   .post(`${this.api.endPoint}/update`, body)
-    //   .subscribe(() => console.log("api called"));
+    this.http
+      .post(`${this.api.endPoint}/update`, body)
+      .subscribe(() => console.log("api called"));
   }
 
   scour() {
     this.ticker = this.calcForm.controls["tickerToScour"].value;
     console.log("scouring for:", this.ticker);
+
+    // populate
+    this.companies.forEach((val) => {
+      console.log('comparing', val)
+      if(val.ticker == this.ticker)
+      {
+        console.log('found', val.evaluation)
+        //this.calcForm.patchValue(val.evaluation)
+        this.evaluation = val.evaluation
+      }
+    })
+
     this.api
       .getCompanyOverview(this.ticker)
       .pipe(tap(console.log))
