@@ -14,7 +14,7 @@ module.exports = {
   },
 
   loadData: function() {
-    fs.readFile('./companies.json', (err, data) => {
+    fs.readFile('./src/api/companies.json', (err, data) => {
       if (err) {
         console.error(err);
         return;
@@ -26,7 +26,7 @@ module.exports = {
 
   saveData: function(companies) {
     this.backUp();
-    fs.writeFile('./companies.json',
+    fs.writeFile('./src/api/companies.json',
       JSON.stringify(companies, null, 2), (err) => {
         if (err) {
           console.error(err);
@@ -38,7 +38,7 @@ module.exports = {
   },
 
   backUp: function() {
-    fs.writeFile('./companies_backup.json',
+    fs.writeFile('./src/api/companies_backup.json',
       JSON.stringify(loaded_companies, null, 2), (err) => {
         if (err) {
           console.error(err);

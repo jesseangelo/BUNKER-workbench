@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "platform": "npm-run-all --parallel start api",
-    "api": "node ./src/api/app.js"
+    "api": "nodemon ./src/api/app.js"
   },
   "dependencies": {
     "@angular/animations": "^14.0.0",
@@ -50,6 +50,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "nodemon": "^3.0.1",
     "npm-run-all": "^4.1.5",
     "typescript": "~4.7.2"
   }

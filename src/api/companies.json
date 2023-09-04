@@ -38,7 +38,7 @@
       "gr_revenue_check": false,
       "gr_eps_check": "",
       "_check": "",
-      "roic_check": false,
+      "roic_check": true,
       "asset_check": false,
       "case_per_share_check": false,
       "divident_check": "",
