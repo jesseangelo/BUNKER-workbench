@@ -43,6 +43,22 @@
             {{ overview?.MarketCapitalization | numberSuffix : 2 }}
           </h4>
         </mat-list-item>
+        
+        <mat-card>
+          <h3 class="f4">Link Area</h3>
+          
+          <div><a href="https://stockcircle.com/stocks/{{ticker}}" target="_new">Guru Ownership</a></div>
+          <div><a href="https://stockanalysis.com/stocks/{{ticker}}" target="_new">Stock Analysis</a></div>
+          <div><a href="https://roic.ai/company/{{ticker}}:US" target="_new">Roic.ai</a></div>
+          <div><a href="https://www.macrotrends.net/stocks/charts/{{ticker}}/{{ticker}}/financial-statements" target="_new">Macrotrends</a></div>
+          <!-- <div><a href="https://www.alphaspread.com/security/nyse/{{ticker}}/profitability/ratio/return-on-invested-capital" target="_new">ROIC</a></div> -->
+          
+          <!-- Dataroma
+          Macrotrends
+          Simply Wall St.
+          Decode investing
+          Valueinvesting.io -->
+        </mat-card>
         <mat-divider></mat-divider>
       </mat-list>
     </div>
