@@ -26,6 +26,8 @@ export class DetailsInsightsComponent implements OnInit {
   researchFormVals = null;
   companies = []
   evaluation = ''
+  // need a better way to handle this and update
+  shares = 0;
 
   constructor(
     private fb: FormBuilder,
@@ -55,13 +57,15 @@ export class DetailsInsightsComponent implements OnInit {
   }
 
   save() {
-    console.log(this.calcForm.controls["tickerToScour"].value);
+    // console.log(this.calcForm.controls["tickerToScour"].value);
     const t = this.calcForm.controls["tickerToScour"].value;
     const body = {
       ticker: t,
       evaluation: {
         ...this.researchFormVals,
       },
+      shares_held: this.shares
+
     };
     console.log("getting ready to save", body);
 
@@ -72,16 +76,19 @@ export class DetailsInsightsComponent implements OnInit {
 
   scour() {
     this.ticker = this.calcForm.controls["tickerToScour"].value;
-    console.log("scouring for:", this.ticker);
+    // console.log("scouring for:", this.ticker);
 
     // populate
     this.companies.forEach((val) => {
-      console.log('comparing', val)
+      // console.log('comparing', val)
       if(val.ticker == this.ticker)
       {
-        console.log('found', val.evaluation)
+        console.log('found', val)
         //this.calcForm.patchValue(val.evaluation)
         this.evaluation = val.evaluation
+        // don't think we need this or should be doing it here?
+        console.log(val.shares_held)
+        this.shares = val.shares_held
       }
     })
 

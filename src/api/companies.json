@@ -25,8 +25,10 @@
       "price_to_fcf_check": false,
       "peg_ratio_check": false,
       "eval_mos": true,
-      "eval_thesis": "IT WORKS"
-    }
+      "eval_thesis": "IT WORKS",
+      "target_price": 220
+    },
+    "shares_held": 45
   },
   {
     "ticker": "INTC",
@@ -36,11 +38,10 @@
       "gr_netincome_check": false,
       "gr_revenue_check": false,
       "gr_eps_check": "",
-      "_check": "",
       "roic_check": true,
       "asset_check": false,
       "case_per_share_check": false,
-      "divident_check": "",
+      "dividend_check": "",
       "eval_financial": "",
       "de_check": "",
       "cr_check": "",
@@ -55,7 +56,9 @@
       "price_to_fcf_check": "",
       "peg_ratio_check": "",
       "eval_mos": "",
-      "eval_thesis": ""
-    }
+      "eval_thesis": "",
+      "target_price": 27
+    },
+    "shares_held": 245
   }
 ]

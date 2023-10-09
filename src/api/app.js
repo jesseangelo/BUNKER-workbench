@@ -153,32 +153,20 @@ app.post("/update", (req, res) => {
   var allUpdated = [];
   let isFound = false;
 
-  for(let i = 0; i < all.length; i++) {
-    if(all[i].ticker == req.body.ticker) {
-      console.log('fond') 
+  for (let i = 0; i < all.length; i++) {
+    if (all[i].ticker == req.body.ticker) {
+      console.log('fond')
       isFound = true;
       allUpdated.push(req.body)
     } else {
       console.log('not')
       allUpdated.push(all[i])
     }
-   }
-   
-   if(!isFound) {
+  }
+
+  if (!isFound) {
     allUpdated.push(req.body)
-     }
-
-  // for (var n = 0; n < all.length; n++) {
-  //   var comp = all[n];
-  //   console.log('working........')
-
-  //   if (all[n].ticker == req.body.ticker) {
-  //     console.log("COMPARED and found", req.body.ticker);
-  //     allUpdated.push(req.body);
-  //   } else {
-  //     allUpdated.push(comp);
-  //   }
-  // }
+  }
 
   console.log('saving all', allUpdated);
   // const allUpdated = []

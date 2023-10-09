@@ -19,14 +19,16 @@
       "integ_check": false,
       "margin_check": true,
       "debt_check": false,
-      "eval_mgmt": true,
+      "eval_mgmt": "The management is ok",
       "pe_vs_industry_check": true,
       "price_to_book_check": false,
       "price_to_fcf_check": false,
       "peg_ratio_check": false,
       "eval_mos": true,
-      "eval_thesis": "IT WORKS"
-    }
+      "eval_thesis": "IT WORKS",
+      "target_price": 220
+    },
+    "shares_held": 45
   },
   {
     "ticker": "INTC",
@@ -55,7 +57,9 @@
       "price_to_fcf_check": "",
       "peg_ratio_check": "",
       "eval_mos": "",
-      "eval_thesis": ""
-    }
+      "eval_thesis": "",
+      "target_price": 27
+    },
+    "shares_held": 245
   }
 ]
