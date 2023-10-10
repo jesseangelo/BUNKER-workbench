@@ -10,6 +10,7 @@ import { LoadingService } from "./services/loading.service";
 export class AppComponent implements OnInit {
   apiIsConnected = "";
   loading$ = this.loader.loading$
+  activeLink = '/portfolio-watchlist'
 
   constructor(private api: ApiService, public loader: LoadingService) {}  
 
