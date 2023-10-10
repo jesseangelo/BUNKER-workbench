@@ -30,6 +30,8 @@ import { MatTableModule } from '@angular/material/table';
 import { CashFlowComponent } from './_features/cash_flow/cash_flow.component';
 import { NumberSuffixPipe } from './services/number-suffix.pipe';
 import { AgGridModule } from 'ag-grid-angular';
+import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -52,6 +54,8 @@ import { AgGridModule } from 'ag-grid-angular';
     MatListModule,
     MatTableModule,
     AgGridModule,
+    AppRoutingModule,
+    RouterModule
 
   ],
   declarations: [

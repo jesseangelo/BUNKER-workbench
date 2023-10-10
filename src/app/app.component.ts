@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
       .isAlive()
       .pipe(repeat({ delay: 100000 }))
       .subscribe((connected: boolean) => {
-        console.log("con", connected);
+        // console.log("con", connected);
         this.apiIsConnected = connected ? "Connected" : "Disconnected";
       });
   }
