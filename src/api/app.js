@@ -79,7 +79,7 @@ function isSP500(ticker) {
     console.error("NO CONSITUENTS");
   }
   const isInSP500 = constituents.indexOf(ticker) !== -1;
-  console.log(ticker + "in SP500? " + isInSP500);
+  console.log(ticker + " in SP500? " + isInSP500);
   return isInSP500;
 }
 
@@ -101,7 +101,7 @@ app.get("/healthCheck", (req, res) => {
 });
 
 app.get("/isSP500", (req, res) => {
-  console.log(req.body);
+  console.log(req.query);
   const isSP = isSP500(req.query.ticker);
   res.send(isSP);
 });

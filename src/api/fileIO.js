@@ -1,12 +1,14 @@
 const fs = require("fs");
+// local
+const path = './src/api/';
+// server
+// const path = './';
 
 module.exports = {
   loaded_companies: [],
 
   init: function() {
-    this.loadData()
-    // console.log(tc)
-    // loaded_companies = tc;
+    this.loadData();
   },
 
   getCompanies() {
@@ -14,7 +16,7 @@ module.exports = {
   },
 
   loadData: function() {
-    fs.readFile('./src/api/companies.json', (err, data) => {
+    fs.readFile(path + 'companies.json', (err, data) => {
       if (err) {
         console.error(err);
         return;
@@ -26,7 +28,7 @@ module.exports = {
 
   saveData: function(companies) {
     this.backUp();
-    fs.writeFile('./src/api/companies.json',
+    fs.writeFile(path + 'companies.json',
       JSON.stringify(companies, null, 2), (err) => {
         if (err) {
           console.error(err);
@@ -38,7 +40,7 @@ module.exports = {
   },
 
   backUp: function() {
-    fs.writeFile('./src/api/companies_backup.json',
+    fs.writeFile(path + 'companies_backup.json',
       JSON.stringify(loaded_companies, null, 2), (err) => {
         if (err) {
           console.error(err);
