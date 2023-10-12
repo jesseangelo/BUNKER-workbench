@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-module.exports = {
+export class External {
   fearGreed() {
     return axios.get(
       'https://production.dataviz.cnn.io/index/fearandgreed/graphdata',
@@ -11,5 +11,5 @@ module.exports = {
         },
       }
     );
-  },
+  }
 };

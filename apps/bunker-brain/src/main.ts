@@ -1,29 +1,13 @@
-// import express from 'express';
-
-// const host = process.env.HOST ?? 'localhost';
-// const port = process.env.PORT ? Number(process.env.PORT) : 8080;
-
-// const app = express();
-
-// app.get('/', (req, res) => {
-//   res.send({ message: 'Hello API' });
-// });
-
-// app.listen(port, host, () => {
-//   console.log(`[ ready ] http://${host}:${port}`);
-// });
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const axios = require('axios');
 const cheerio = require('cheerio');
 // const Company = require('./Types/company');
-// const io = require('./fileIO');
 import { FileIO } from "./fileIO"
 const app = express();
-// const av = require('./alphaVantage_APIs');
-// const exAPIs = require('./external_APIs');
+import { Alphavantage } from './alphaVantage_APIs';
+import { External } from './external_APIs';
 app.use(cors());
 app.use(express.json());
 
@@ -34,11 +18,13 @@ let loaded_companies = [];
 let companies = [];
 let constituents = [];
 let running = false;
-let io;
+let io, av, exAPIs;
 //
 
 function init() {
   io = new FileIO();
+  av = new Alphavantage();
+  exAPIs = new External();
   io.init();
   populateList();
   running = true;
@@ -128,36 +114,36 @@ app.get('/companies', (req, res) => {
   res.send(io.getCompanies());
 });
 
-// app.get('/companyOverview', (req, res) => {
-//   av.companyOverview(req.query.ticker).then((response) => {
-//     res.send(response.data);
-//   });
-// });
+app.get('/companyOverview', (req, res) => {
+  av.companyOverview(req.query.ticker).then((response) => {
+    res.send(response.data);
+  });
+});
 
-// app.get('/balanceSheet', (req, res) => {
-//   av.balanceSheet(req.query.ticker).then((response) => {
-//     res.send(response.data);
-//   });
-// });
+app.get('/balanceSheet', (req, res) => {
+  av.balanceSheet(req.query.ticker).then((response) => {
+    res.send(response.data);
+  });
+});
 
-// app.get('/cashFlow', (req, res) => {
-//   av.cashFlow(req.query.ticker).then((response) => {
-//     res.send(response.data);
-//   });
-// });
+app.get('/cashFlow', (req, res) => {
+  av.cashFlow(req.query.ticker).then((response) => {
+    res.send(response.data);
+  });
+});
 
-// app.get('/incomeStatement', (req, res) => {
-//   av.incomeStatement(req.query.ticker).then((response) => {
-//     res.send(response.data);
-//   });
-// });
+app.get('/incomeStatement', (req, res) => {
+  av.incomeStatement(req.query.ticker).then((response) => {
+    res.send(response.data);
+  });
+});
 
-// app.get('/fearGreed', (req, res) => {
-//   exAPIs.fearGreed().then((response) => {
-//     console.log(response.data.fear_and_greed);
-//     res.send(response.data.fear_and_greed);
-//   });
-// });
+app.get('/fearGreed', (req, res) => {
+  exAPIs.fearGreed().then((response) => {
+    console.log(response.data.fear_and_greed);
+    res.send(response.data.fear_and_greed);
+  });
+});
 
 app.post('/update', (req, res) => {
   console.log('Method called is -- ', req.method);
