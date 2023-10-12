@@ -9,9 +9,6 @@ import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
     <div class="ma3 sans-serif" [formGroup]="calcForm">
       <section>
         <h2>Companies</h2>
-        <!-- Get All 
-      <button mat-button (click)="getCompanies()">GET</button>
-      <br /> -->
 
         <mat-form-field class="example-full-width">
           <mat-label>New Ticker</mat-label>
@@ -24,21 +21,14 @@ import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
       <section>
         <h2>Cost Reducer</h2>
         <section><cost-reducer></cost-reducer></section>
+      </section>
+      <section>
+        <h2>Companies</h2>
         <div *ngFor="let t of companies">
-          <mat-expansion-panel hideToggle>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                {{ t.ticker }}
-              </mat-panel-title>
-              <mat-panel-description>
-                This is a summary of the content
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <p>Next Earnings: {{ t.earningsDate }}</p>
-          </mat-expansion-panel>
+          <a [attr.href]="'/details-insights/' + t.ticker">{{ t.ticker }}</a>
+          Holding {{ t.shares_held }} Buy Price {{ t.evaluation.target_price }}
         </div>
       </section>
-      Notes: Price reduction calculator Cost basis calculator
     </div>
   `,
 })

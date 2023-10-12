@@ -5,6 +5,7 @@ import { Component, OnInit } from "@angular/core";
 @Component({
   selector: "dashboard-news",
   template: `
+  CSI market
     <h2>
       <a href="https://www.moneymetals.com/copper-prices">Copper Prices</a>
     </h2>

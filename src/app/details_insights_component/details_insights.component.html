@@ -1,5 +1,5 @@
 <div class="ma3 sans-serif" [formGroup]="calcForm">
-   <section>
+  <section>
     <h2>Research</h2>
     <div>
       <mat-form-field class="example-full-width mr3">
@@ -15,56 +15,67 @@
     </div>
   </section>
 
-  <div class="sans-serif" [formGroup]="calcForm">
-    <h4 class="f5">Overview:&nbsp;</h4>
-    <p>
-      {{ overview?.Description }}
-    </p>
-    <mat-divider></mat-divider>
-    <h3>Key Metrics</h3>
-    <mat-list>
-      <mat-list-item>
-        <h4 class="f5">ROIC</h4>
-        {{ roic }}
-      </mat-list-item>
+  <section *ngIf="ticker">
+    <div class="sans-serif" [formGroup]="calcForm">
+      <h4 class="f5">Overview:&nbsp;</h4>
+      <p>
+        {{ overview?.Description }}
+      </p>
       <mat-divider></mat-divider>
+      <h4 class="f5">Key Metrics</h4>
+      <mat-list>
+        <mat-list-item>
+          <h4 class="f5">ROIC</h4>
+          <h4 class="calisto f4">{{ roic }}</h4>
+        </mat-list-item>
+        <!-- https://www.alphaspread.com/security/nyse/epam/profitability/ratio/return-on-invested-capital -->
+        <mat-divider></mat-divider>
 
-      <mat-list-item>
-        <h4 class="f5">
-          Is S&P 500?
+        <mat-list-item>
+          <h4 class="f5">Is S&P 500?</h4>
+          <h4 class="calisto f4">{{ isInSP500 }}</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+          <h4 class="f5">Market Cap</h4>
+          <h4 class="calisto f4">
+            {{ overview?.MarketCapitalization | numberSuffix : 2 }}
+          </h4>
+        </mat-list-item>
+        
+        <mat-card>
+          <h3 class="f4">Link Area</h3>
           
-        </h4>
-        <span class="dark-green">{{ isInSP500 }}</span>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-
-      <mat-list-item>
-        <h4 class="f5">Market Cap</h4>
-        <h4 class="calisto f4">{{ overview?.MarketCapitalization | numberSuffix:2 }}</h4>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-
-      <mat-list-item>
-        <h4 class="f5">PE Ratio</h4>
-        <h4>{{ overview?.PERatio }}</h4>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-    </mat-list>
-    
-  </div>
-  <br />
-  <mat-tab-group dynamicHeight>
-    <mat-tab label="Checklist">
-      <research-template [overview]="overview"></research-template>
-    </mat-tab>
-    <mat-tab label="Income Statement">
-      <income-statement [ticker]="ticker"></income-statement>
-    </mat-tab>
-    <mat-tab label="Balance Sheet">
-      <balance-sheet [ticker]="ticker"></balance-sheet>
-    </mat-tab>
-    <mat-tab label="Cash Flow">
-      <cash-flow [ticker]="ticker"></cash-flow>
-    </mat-tab>
-  </mat-tab-group>
+          <div><a href="https://stockcircle.com/stocks/{{ticker}}" target="_new">Guru Ownership</a></div>
+          <div><a href="https://stockanalysis.com/stocks/{{ticker}}" target="_new">Stock Analysis</a></div>
+          <div><a href="https://roic.ai/company/{{ticker}}:US" target="_new">Roic.ai</a></div>
+          <div><a href="https://www.macrotrends.net/stocks/charts/{{ticker}}/{{ticker}}/financial-statements" target="_new">Macrotrends</a></div>
+          <!-- <div><a href="https://www.alphaspread.com/security/nyse/{{ticker}}/profitability/ratio/return-on-invested-capital" target="_new">ROIC</a></div> -->
+          
+          <!-- Dataroma
+          Macrotrends
+          Simply Wall St.
+          Decode investing
+          Valueinvesting.io -->
+        </mat-card>
+        <mat-divider></mat-divider>
+      </mat-list>
+    </div>
+    <br />
+    <mat-tab-group dynamicHeight>
+      <mat-tab label="Checklist">
+        <research-template [overview]="overview" [existingData]="evaluation" (onFormGroupChange)="templateFormUpdated($event)"></research-template>
+      </mat-tab>
+      <mat-tab label="Income Statement">
+        <income-statement [ticker]="ticker"></income-statement>
+      </mat-tab>
+      <mat-tab label="Balance Sheet">
+        <balance-sheet [ticker]="ticker"></balance-sheet>
+      </mat-tab>
+      <mat-tab label="Cash Flow">
+        <cash-flow [ticker]="ticker"></cash-flow>
+      </mat-tab>
+    </mat-tab-group>
+  </section>
 </div>

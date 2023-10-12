@@ -1,6 +1,6 @@
 import { ApiService } from "../../services/api.service";
 import { HttpClient } from "@angular/common/http";
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { tap } from "rxjs";
 
@@ -18,66 +18,176 @@ import { tap } from "rxjs";
 })
 export class ResearchTemplateComponent implements OnInit {
   @Input() overview;
+  @Input() existingData;
+  @Output() onFormGroupChange = new EventEmitter<Object>();
   calcForm: FormGroup;
   earningsDate = "";
   isInSP500 = null;
-  mgmt_score = 25;
+  mgmt_score = 0;
+  sanity_score = 0;
+  mos_score = 0;
+  total_score = 0;
 
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
     private api: ApiService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.calcForm = this.fb.group({
+      // pre_check_group: new FormGroup({
+      eval_overview: new FormControl(""),
+      gr_fcf__check: new FormControl(""),
+      gr_netincome_check: new FormControl(""),
+      gr_revenue_check: new FormControl(""),
+      gr_eps_check: new FormControl(""),
+      roic_check: new FormControl(""),
+      asset_check: new FormControl(""),
+      case_per_share_check: new FormControl(""),
+      dividend_check: new FormControl(""),
+      eval_financial: new FormControl(""),
+
       de_check: new FormControl(""),
       cr_check: new FormControl(""),
-      roic_check: new FormControl(""),
       gro_check: new FormControl(""),
       insb_check: new FormControl(""),
       integ_check: new FormControl(""),
       margin_check: new FormControl(""),
       debt_check: new FormControl(""),
+      eval_mgmt: new FormControl(""),
+
+      pe_vs_industry_check: new FormControl(""),
+      price_to_book_check: new FormControl(""),
+      price_to_fcf_check: new FormControl(""),
+      peg_ratio_check: new FormControl(""),
+      eval_mos: new FormControl(""),
+      eval_thesis: new FormControl(""),
+      target_price: new FormControl("")
     });
 
     this.calcForm.valueChanges.pipe().subscribe((t) => {
-      let total = 0;
-      let count = 0;
-      for (const [key, value] of Object.entries(t)) {
-        total++;
-        value == true ? count++ : null;
-        console.log(`${key}: ${value}`);
-      }
-      this.mgmt_score = Math.round((count / total) * 100);
+      this.onFormGroupChange.emit(t);
+      this.calcMgmtScore()
+      this.calcSanityScore();
+      this.calcMOSScore();
+      this.total_score = this.mos_score + this.mgmt_score + this.sanity_score;
+
     });
+
+    // console.log('ex data', this.existingData)
+    this.calcForm.patchValue(this.existingData)
   }
 
-  save() {
-    // console.log(this.calcForm.controls["tickerToScour"].value);
-    // const t = this.calcForm.controls["tickerToScour"].value;
-    // const body = { ticker: t, earningsDate: this.earningsDate };
-    // this.http
-    //   .post(`${this.api.endPoint}/update`, body)
-    //   .subscribe(() => console.log("api called"));
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+
   }
 
-  scour() {
-    const t = this.calcForm.controls["tickerToScour"].value;
-    console.log("scouring for:", t);
-    this.api
-      .getCompanyOverview(t)
-      .pipe(tap(console.log))
-      .subscribe((co: any) => {
-        this.overview = co;
-      });
+  calcMgmtScore() {
+    let count = 0;
+    const keys = ['de_check', 'cr_check', 'roic_check',
+      'gro_check',
+      'insb_check',
+      'integ_check',
+      'margin_check',
+      'debt_check',
+    ].forEach(k => {
+      // console.log(k, this.calcForm.controls[k].value)
+      if (this.calcForm.controls[k].value) {
+        count++;
+      }
+    })
 
-    // this.api.isSP500(t).subscribe((is: any) => {
-    //   this.isInSP500 = is;
-    // });
-
-    // this.api.nextEarningsDate(t).subscribe((e: any) => {
-    //   this.earningsDate = e;
-    // });
+    this.mgmt_score = Math.round((count / 8) * 100);
   }
+
+  calcSanityScore() {
+    let count = 0;
+    const keys = ['gr_fcf__check',
+    'gr_netincome_check',
+    'gr_revenue_check',
+    'gr_eps_check',
+    'roic_check',
+    'asset_check',
+    'case_per_share_check',
+    'dividend_check',
+    ].forEach(k => {
+      // console.log(k, this.calcForm.controls[k].value)
+      if (this.calcForm.controls[k].value) {
+        count++;
+      }
+    })
+
+    this.sanity_score = Math.round((count / 8) * 100);
+  }
+
+  calcMOSScore() {
+
+    let count = 0;
+    const keys = ['pe_vs_industry_check',
+    'price_to_book_check',
+    'price_to_fcf_check',
+    'peg_ratio_check'
+    ].forEach(k => {
+      // console.log(k, this.calcForm.controls[k].value)
+      if (this.calcForm.controls[k].value) {
+        count++;
+      }
+    })
+
+    this.mos_score = Math.round((count / 4) * 100);
+
+  }
+
 }
+
+
+// <!-- 	
+// Symbol	"IBM"
+// AssetType	"Common Stock"
+// Name	"International Business Machines"
+// Description	"International Business Machines Corporation (IBM) is an American multinational technology company headquartered in Armonk, New York, with operations in over 170 countries. The company began in 1911, founded in Endicott, New York, as the Computing-Tabulating-Recording Company (CTR) and was renamed International Business Machines in 1924. IBM is incorporated in New York. IBM produces and sells computer hardware, middleware and software, and provides hosting and consulting services in areas ranging from mainframe computers to nanotechnology. IBM is also a major research organization, holding the record for most annual U.S. patents generated by a business (as of 2020) for 28 consecutive years. Inventions by IBM include the automated teller machine (ATM), the floppy disk, the hard disk drive, the magnetic stripe card, the relational database, the SQL programming language, the UPC barcode, and dynamic random-access memory (DRAM). The IBM mainframe, exemplified by the System/360, was the dominant computing platform during the 1960s and 1970s."
+// CIK	"51143"
+// Exchange	"NYSE"
+// Currency	"USD"
+// Country	"USA"
+// Sector	"TECHNOLOGY"
+// Industry	"COMPUTER & OFFICE EQUIPMENT"
+// Address	"1 NEW ORCHARD ROAD, ARMONK, NY, US"
+// FiscalYearEnd	"December"
+// LatestQuarter	"2023-06-30"
+// MarketCapitalization	"129617936000"
+// EBITDA	"12985000000"
+// PERatio	"60.54"
+// PEGRatio	"1.276"
+// BookValue	"24.37"
+// DividendPerShare	"6.61"
+// DividendYield	"0.0467"
+// EPS	"2.35"
+// RevenuePerShareTTM	"66.75"
+// ProfitMargin	"0.0335"
+// OperatingMarginTTM	"0.141"
+// ReturnOnAssetsTTM	"0.0411"
+// ReturnOnEquityTTM	"0.104"
+// RevenueTTM	"60524999000"
+// GrossProfitTTM	"32688000000"
+// DilutedEPSTTM	"2.35"
+// QuarterlyEarningsGrowthYOY	"0.126"
+// QuarterlyRevenueGrowthYOY	"-0.004"
+// AnalystTargetPrice	"132.01"
+// TrailingPE	"60.54"
+// ForwardPE	"15.55"
+// PriceToSalesRatioTTM	"2.108"
+// PriceToBookRatio	"6.75"
+// EVToRevenue	"2.969"
+// EVToEBITDA	"25.81"
+// Beta	"0.855"
+// 52WeekHigh	"147.62"
+// 52WeekLow	"110.02"
+// 50DayMovingAverage	"137.75"
+// 200DayMovingAverage	"135.39"
+// SharesOutstanding	"911006000"
+// DividendDate	"2023-09-09"
+// ExDividendDate	"2023-08-09" -->
