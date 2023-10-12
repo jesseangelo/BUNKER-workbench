@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "downlevelIteration": true,
+    "typeRoots": ["node_modules/@types"]
+  },
+  "angularCompilerOptions": {
+    "enableIvy": true,
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  },
+  "extends": "../../tsconfig.base.json"
+}
