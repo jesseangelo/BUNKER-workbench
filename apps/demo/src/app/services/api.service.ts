@@ -12,8 +12,8 @@ export class ApiService {
 
   get endPoint() {
     // syn deployment
-    return 'http://192.168.0.62:8080';
-    // return "http://localhost:8080"
+    // return 'http://192.168.0.62:8080';
+    return "http://localhost:8080"
     // return "http://bnkr-env.eba-gakhxzk2.us-west-2.elasticbeanstalk.com"
   }
 

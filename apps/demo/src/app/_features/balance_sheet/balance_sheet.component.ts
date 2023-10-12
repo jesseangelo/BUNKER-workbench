@@ -1,6 +1,6 @@
 import { ApiService } from './../../services/api.service';
 import { Component, Input } from '@angular/core';
-import { ConvertToFinReportService } from 'src/app/services/convert-to-fin-report.service';
+import { ConvertToFinReportService } from '../../services/convert-to-fin-report.service';
 
 @Component({
   selector: 'balance-sheet',

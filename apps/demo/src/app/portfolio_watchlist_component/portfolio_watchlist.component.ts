@@ -4,33 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'portfolio-watchlist',
-  template: `
-    <div class="ma3 sans-serif" [formGroup]="calcForm">
-      <section>
-        <h2>Companies</h2>
-
-        <mat-form-field class="example-full-width">
-          <mat-label>New Ticker</mat-label>
-          <input matInput formControlName="newTicker" />
-        </mat-form-field>
-
-        <button mat-button (click)="add()">ADD</button>
-      </section>
-
-      <section>
-        <h2>Cost Reducer</h2>
-        <section><cost-reducer></cost-reducer></section>
-      </section>
-      <section>
-        <h2>Companies</h2>
-        <div *ngFor="let t of companies">
-          <a [attr.href]="'/details-insights/' + t.ticker">{{ t.ticker }}</a>
-          Holding {{ t.shares_held }} Buy Price {{ t.evaluation.target_price }}
-        </div>
-      </section>
-    </div>
-  `,
+  selector: "portfolio-watchlist",
+  templateUrl: "./portfolio_watchlist.component.html",
 })
 export class PortfolioWatchlistComponent implements OnInit {
   calcForm: FormGroup;
@@ -42,7 +17,7 @@ export class PortfolioWatchlistComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private api: ApiService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.calcForm = this.fb.group({
