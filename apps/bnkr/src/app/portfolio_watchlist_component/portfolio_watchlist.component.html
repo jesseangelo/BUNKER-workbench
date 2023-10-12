@@ -20,7 +20,7 @@
     <section>
         <h2>Companies</h2>
         <div *ngFor="let t of companies">
-            {{ t.ticker }}
+            <a [routerLink]="'details-insights/' + t.ticker">{{ t.ticker }}</a>
             Holding {{ t.shares_held }} Buy Price {{ t.evaluation.target_price }}
 
         </div>

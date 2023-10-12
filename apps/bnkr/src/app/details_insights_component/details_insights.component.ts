@@ -2,7 +2,8 @@ import { ApiService } from './../services/api.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { distinctUntilChanged, tap } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { distinctUntilChanged, map, tap } from 'rxjs';
 
 @Component({
   selector: 'details-insights',
@@ -32,7 +33,8 @@ export class DetailsInsightsComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    private api: ApiService
+    private api: ApiService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -47,6 +49,8 @@ export class DetailsInsightsComponent implements OnInit {
       });
 
     this.getCompanies();
+    const t = this.route.url.pipe(map(segments => segments.join('')))
+    console.log("route", t)
   }
 
   getCompanies() {

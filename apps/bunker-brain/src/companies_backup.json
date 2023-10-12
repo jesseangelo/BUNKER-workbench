@@ -33,16 +33,15 @@
   {
     "ticker": "INTC",
     "evaluation": {
-      "eval_overview": "something",
+      "eval_overview": "something awesome",
       "gr_fcf__check": "",
       "gr_netincome_check": false,
       "gr_revenue_check": false,
       "gr_eps_check": "",
-      "_check": "",
       "roic_check": true,
       "asset_check": false,
       "case_per_share_check": false,
-      "divident_check": "",
+      "dividend_check": "",
       "eval_financial": "",
       "de_check": "",
       "cr_check": "",
