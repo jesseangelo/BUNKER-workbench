@@ -10,12 +10,16 @@
       "defaultConfiguration": "production",
       "options": {
         "platform": "node",
-        "outputPath": "dist/apps/bunker-brain",
+        "outputPath": "dist/",
         "format": ["cjs"],
-        "bundle": false,
+        "bundle": true,
         "main": "apps/bunker-brain/src/app.ts",
         "tsConfig": "apps/bunker-brain/tsconfig.app.json",
-        "assets": ["apps/bunker-brain/src/assets"],
+        "assets": [ {
+          "input": "apps/bunker-brain/src/assets/",
+          "glob": "*.json",
+          "output": "apps/bunker-brain/src/assets/"
+        }],
         "generatePackageJson": true,
         "esbuildOptions": {
           "sourcemap": true,

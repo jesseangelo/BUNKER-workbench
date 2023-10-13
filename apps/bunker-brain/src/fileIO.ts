@@ -1,6 +1,6 @@
 const fs = require('fs');
 // local
-const path = './apps/bunker-brain/src/';
+const path = './apps/bunker-brain/src/assets/';
 // server
 // const path = './';
 
