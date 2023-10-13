@@ -1,0 +1,86 @@
+{
+  "name": "bunker-brain",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/bunker-brain/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/",
+        "format": ["cjs"],
+        "bundle": true,
+        "main": "apps/bunker-brain/src/app.ts",
+        "tsConfig": "apps/bunker-brain/tsconfig.app.json",
+        "assets": [ {
+          "input": "apps/bunker-brain/src/assets/",
+          "glob": "*.json",
+          "output": "apps/bunker-brain/src/assets/"
+        }],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "generateLockfile": true,
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "bunker-brain:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "bunker-brain:build:development"
+        },
+        "production": {
+          "buildTarget": "bunker-brain:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/bunker-brain/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/bunker-brain/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "docker-build": {
+      "dependsOn": ["build"],
+      "command": "docker build -f apps/bunker-brain/Dockerfile . -t bunker-brain"
+    }
+  },
+  "tags": []
+}

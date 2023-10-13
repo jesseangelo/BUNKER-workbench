@@ -1,0 +1,83 @@
+{
+  "name": "bnkr",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/bnkr/src",
+  "projectType": "application",
+  "prefix": "app",
+  "generators": {},
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/bnkr",
+        "index": "apps/bnkr/src/index.html",
+        "main": "apps/bnkr/src/main.ts",
+        "polyfills": "apps/bnkr/src/polyfills.ts",
+        "tsConfig": "apps/bnkr/tsconfig.json",
+        "assets": ["apps/bnkr/src/favicon.ico", "apps/bnkr/src/assets"],
+        "styles": ["apps/bnkr/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/bnkr/src/environments/environment.ts",
+              "with": "apps/bnkr/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "extractCss": true,
+          "namedChunks": false,
+          "aot": true,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true
+        }
+      },
+      "outputs": ["{options.outputPath}"]
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "browserTarget": "bnkr:build",
+        "proxyConfig": "apps/bnkr/proxy.conf.json"
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "bnkr:build:production"
+        }
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "bnkr:build"
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "apps/bnkr/src/test.ts",
+        "polyfills": "apps/bnkr/src/polyfills.ts",
+        "tsConfig": "apps/bnkr/src/tsconfig.spec.json",
+        "karmaConfig": "apps/bnkr/src/karma.conf.js",
+        "styles": ["styles.scss"],
+        "scripts": [],
+        "assets": ["apps/bnkr/src/favicon.ico", "apps/bnkr/src/assets"]
+      }
+    },
+    "lint": {
+      "executor": "@angular-devkit/build-angular:tslint",
+      "options": {
+        "tsConfig": [
+          "apps/bnkr/src/tsconfig.app.json",
+          "apps/bnkr/src/tsconfig.spec.json"
+        ],
+        "exclude": ["**/node_modules/**"]
+      }
+    }
+  }
+}
