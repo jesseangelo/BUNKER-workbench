@@ -51,4 +51,4 @@ function isFile(s) {
 }
 
 // Call the user-defined main.
-require('./apps/bunker-brain/src/main.js');
+require('./apps/bunker-brain/src/app.js');

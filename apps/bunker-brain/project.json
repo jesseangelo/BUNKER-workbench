@@ -13,7 +13,7 @@
         "outputPath": "dist/apps/bunker-brain",
         "format": ["cjs"],
         "bundle": false,
-        "main": "apps/bunker-brain/src/main.ts",
+        "main": "apps/bunker-brain/src/app.ts",
         "tsConfig": "apps/bunker-brain/tsconfig.app.json",
         "assets": ["apps/bunker-brain/src/assets"],
         "generatePackageJson": true,
