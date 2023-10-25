@@ -1,8 +1,8 @@
 import { ApiService } from './../services/api.service';
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import {MatTableModule} from '@angular/material/table';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 export interface PeriodicElement {
   position: number;
@@ -11,53 +11,42 @@ export interface PeriodicElement {
   target_price: number;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, ticker: 'EPAM', shares_held: 12, target_price: 23 }
-  // {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-];
-
 @Component({
-  selector: "portfolio-watchlist",
-  templateUrl: "./portfolio_watchlist.component.html",
+  selector: 'portfolio-watchlist',
+  templateUrl: './portfolio_watchlist.component.html',
 })
 export class PortfolioWatchlistComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'holding', 'target'];
-  dataSource = ELEMENT_DATA;
-
-  calcForm: FormGroup;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   companies = [];
-  earningsDate = '';
+  displayedColumns: string[] = ['ticker', 'shares_held', 'target_price', 'adjust_holdings'];
+  dataSource = new MatTableDataSource<any>();
 
-  constructor(
-    private fb: FormBuilder,
-    private http: HttpClient,
-    private api: ApiService
-  ) { }
+  constructor(private api: ApiService) {}
 
   ngOnInit() {
-    this.calcForm = this.fb.group({
-      newTicker: new FormControl(''),
-    });
-
-    this.getCompanies();
-  }
-
-  add() {
-    console.log(this.calcForm.controls['newTicker'].value);
-    const t = this.calcForm.controls['newTicker'].value;
-    this.companies.push({ ticker: t });
-    const body = this.companies;
-
-    this.api
-      .addCompany(t, body)
-      .subscribe(() => console.log('add called', body));
-  }
-
-  getCompanies() {
+    // this.getCompanies();
     this.api.getCompanies().subscribe((c: any) => {
       this.companies = c;
-      console.log(`Companies loaded: ${this.companies}`);
+      this.dataSource.data = c;
+      console.log(`Companies loaded: `);
+      console.log(this.companies[0]);
     });
   }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
+
+  // add() {
+  //   console.log(this.calcForm.controls['newTicker'].value);
+  //   const t = this.calcForm.controls['newTicker'].value;
+  //   this.companies.push({ ticker: t });
+  //   const body = this.companies;
+
+  //   this.api
+  //     .addCompany(t, body)
+  //     .subscribe(() => console.log('add called', body));
+  // }
 }
