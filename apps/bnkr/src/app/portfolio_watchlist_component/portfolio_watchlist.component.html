@@ -1,28 +1,48 @@
-<div class="ma3 sans-serif" [formGroup]="calcForm">
-    <section>
-        <h2>Companies</h2>
-        <!-- Get All 
-    <button mat-button (click)="getCompanies()">GET</button>
-    <br /> -->
+<div class="ma3 sans-serif">
+  <section>
+    <h2>Companies</h2>
+  </section>
 
-        <!-- <mat-form-field class="example-full-width">
-        <mat-label>New Ticker</mat-label>
-        <input matInput formControlName="newTicker" />
-      </mat-form-field> 
+  <!-- <section>
+    <h2>Cost Reducer</h2>
+    <section><cost-reducer></cost-reducer></section>
+  </section> -->
+  <section>
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      class="mat-elevation-z8 w-100"
+      matSort
+    >
+      <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
 
-      <button mat-button (click)="add()">ADD</button> -->
-    </section>
+      <!-- Name Column -->
+      <ng-container matColumnDef="ticker">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.ticker }}</td>
+      </ng-container>
 
-    <section>
-        <h2>Cost Reducer</h2>
-        <section><cost-reducer></cost-reducer></section>
-    </section>
-    <section>
-        <h2>Companies</h2>
-        <div *ngFor="let t of companies">
-            <a [routerLink]="'details-insights/' + t.ticker">{{ t.ticker }}</a>
-            Holding {{ t.shares_held }} Buy Price {{ t.evaluation.target_price }}
+      <ng-container matColumnDef="shares_held">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Holding</th>
+        <td mat-cell *matCellDef="let element">{{ element.shares_held }}</td>
+      </ng-container>
 
-        </div>
-    </section>
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="target_price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Target</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.evaluation.target_price }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="adjust_holdings">
+        <th mat-header-cell *matHeaderCellDef>Adjust</th>
+        <td mat-cell *matCellDef="let element"><button mat-raised-button color="primary">Edit</button></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </section>
 </div>

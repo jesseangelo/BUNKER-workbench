@@ -73,7 +73,7 @@ export class DetailsInsightsComponent implements OnInit {
     console.log('getting ready to save', body);
 
     this.http
-      .post(`${this.api.endPoint}/update`, body)
+      .post(`${this.api.endPoint}/adjust-holdings`, body)
       .subscribe(() => console.log('api called'));
   }
 

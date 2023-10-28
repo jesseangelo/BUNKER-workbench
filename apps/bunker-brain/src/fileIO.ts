@@ -5,13 +5,19 @@ const path = './apps/bunker-brain/src/assets/';
 // const path = './';
 
 export class FileIO {
-  loaded_companies: []
+  static loaded_companies: [];
 
   public init() {
+    console.log('init file data called');
     this.loadData();
   }
 
-  getCompanies() {
+  static getCompanies() {
+    // if(!this.loaded_companies.length
+    //   ) {
+    //     this.init();
+    //   }
+    console.log('getCompanies called ', this.loaded_companies.length);
     return this.loaded_companies;
   }
 
@@ -22,7 +28,7 @@ export class FileIO {
         return;
       }
       console.log('Successfully read data from file');
-      this.loaded_companies = JSON.parse(data);
+      FileIO.loaded_companies = JSON.parse(data);
     });
   }
 
@@ -45,7 +51,7 @@ export class FileIO {
   backUp() {
     fs.writeFile(
       path + 'companies_backup.json',
-      JSON.stringify(this.loaded_companies, null, 2),
+      JSON.stringify(FileIO.loaded_companies, null, 2),
       (err) => {
         if (err) {
           console.error(err);
@@ -56,4 +62,4 @@ export class FileIO {
       }
     );
   }
-};
+}
