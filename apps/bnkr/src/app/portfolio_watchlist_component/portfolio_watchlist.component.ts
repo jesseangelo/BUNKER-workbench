@@ -39,6 +39,10 @@ export class PortfolioWatchlistComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
+  adjustHoldings(ticker, amt) {
+    // this.api.adjustHoldings()
+  }
+
   // add() {
   //   console.log(this.calcForm.controls['newTicker'].value);
   //   const t = this.calcForm.controls['newTicker'].value;
