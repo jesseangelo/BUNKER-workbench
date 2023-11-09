@@ -22,9 +22,8 @@ function init() {
   populateList();
   running = true;
 
-  // setup updates
-  updates = new Updates(app, gets);
   gets = new Gets(app);
+  updates = new Updates(app, gets);
 }
 
 init();

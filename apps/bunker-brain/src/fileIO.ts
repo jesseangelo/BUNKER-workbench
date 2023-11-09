@@ -49,8 +49,9 @@ export class FileIO {
   }
 
   backUp() {
+    const time = Date.now();
     fs.writeFile(
-      path + 'companies_backup.json',
+      path + `companies_${time}.json`,
       JSON.stringify(FileIO.loaded_companies, null, 2),
       (err) => {
         if (err) {
