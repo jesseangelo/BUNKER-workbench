@@ -1,6 +1,0 @@
-{
-  "compilerOptions": {
-    "paths": {}
-  },
-  "extends": "../../../apps/bunker-brain/tsconfig.app.json"
-}
