@@ -1,1 +1,52 @@
-<app-nx-welcome></app-nx-welcome> <router-outlet></router-outlet>
+<div class="flex flex-column h-100">
+  <mat-toolbar color="secondary">
+    <mat-toolbar-row class="flex justify-between"
+      ><span>BNKR</span>
+      <span class="flex">
+        <div class="mr2">
+          <mat-spinner *ngIf="loading$ | async" [diameter]="25"></mat-spinner>
+        </div>
+        <div class="f6">
+          API STATUS <span class="b">{{ apiIsConnected }}</span>
+        </div>
+      </span>
+    </mat-toolbar-row></mat-toolbar
+  >
+  <div class="flex bg-light-gray">
+    <div class="fl w-10"></div>
+    <div class="fl w-80 h-100">
+      <div class="ma3 sans-serif" style="min-height: calc(100vh - 64px)">
+        <nav mat-tab-nav-bar [tabPanel]="tabPanel">
+          <a
+            mat-tab-link
+            routerLink="/portfolio-watchlist"
+            (click)="activeLink = '/portfolio-watchlist'"
+            [active]="activeLink == '/portfolio-watchlist'"
+            >Portfolio Watchlist
+          </a>
+          <a
+            mat-tab-link
+            routerLink="/dashboard-news"
+            (click)="activeLink = '/dashboard-news'"
+            [active]="activeLink == '/dashboard-news'"
+          >
+            Dashboard News
+          </a>
+          <a
+            mat-tab-link
+            routerLink="/details-insights"
+            (click)="activeLink = '/details-insights'"
+            [active]="activeLink == '/details-insights'"
+          >
+            Details Insights
+          </a>
+        </nav>
+        <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+    <div class="fl w-10"></div>
+  </div>
+</div>
