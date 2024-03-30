@@ -32,6 +32,7 @@ import { NumberSuffixPipe } from './services/number-suffix.pipe';
 import { AgGridModule } from 'ag-grid-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
+import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
 
 @NgModule({
   imports: [
@@ -53,6 +54,7 @@ import { RouterModule } from '@angular/router';
     MatCardModule,
     MatListModule,
     MatTableModule,
+    MatAutocompleteModule,
     AgGridModule,
     AppRoutingModule,
     RouterModule,

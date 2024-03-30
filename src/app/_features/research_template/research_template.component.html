@@ -4,7 +4,7 @@
     Get to no as fast as possible. Why go with your 10th best idea?
   </blockquote>
 
-  <mat-card class="mb4">
+  <mat-card class="mb4 pa3">
     <h3 class="f4">Am I capable of understanding?</h3>
     <aside>
       <p>
@@ -22,7 +22,7 @@
       ></textarea>
     </mat-form-field>
   </mat-card>
-  <mat-card class="mb4">
+  <mat-card class="mb4 pa3">
     <h3 class="f4 flex flex justify-between">
       <span>Preliminary Sanity Checks</span>
       <span>SCORE {{ sanity_score }}</span>
@@ -77,7 +77,7 @@
       ></textarea>
     </mat-form-field>
   </mat-card>
-  <mat-card class="mb4">
+  <mat-card class="mb4 pa3">
     <h3 class="f4 flex flex justify-between">
       Management <span>SCORE {{ mgmt_score }}</span>
     </h3>
@@ -135,15 +135,26 @@
     </mat-form-field>
   </mat-card>
 
-  <mat-card class="mb4">
+  <mat-card class="mb4 pa3">
     <h3 class="f4 flex flex justify-between">
-      MOS <span>SCORE {{ mos_score }}</span>
+      Reasonable Price <span>SCORE {{ mos_score }}</span>
     </h3>
 
     Valuation - Its much better to be vaguely right than precisely wrong
     Preferred metric by company? Quality of assets
 
     <div>
+      P/E Historic Range
+      <br>
+      High
+      <input matInput >
+      <br>
+      Average
+      <input matInput >
+      <br>
+      Low
+      <input matInput >
+      <br>
       <mat-checkbox formControlName="pe_vs_industry_check">
         P/E Industry avg</mat-checkbox
       >
@@ -177,7 +188,7 @@
     </aside>
   </mat-card>
 
-  <mat-card class="mb4">
+  <mat-card class="mb4 pa3">
     <h3 class="f4">Thesis</h3>
 
     Sector, Sentiment, and Catalysts Cyclicality of sector Cyclicality of

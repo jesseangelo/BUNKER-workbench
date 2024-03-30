@@ -1,28 +1,28 @@
 <div class="ma3 sans-serif" [formGroup]="calcForm">
-    <section>
-        <h2>Companies</h2>
-        <!-- Get All 
+  <section>
+    <h2>Companies</h2>
+    <!-- Get All 
     <button mat-button (click)="getCompanies()">GET</button>
     <br /> -->
 
-        <!-- <mat-form-field class="example-full-width">
+    <!-- <mat-form-field class="example-full-width">
         <mat-label>New Ticker</mat-label>
         <input matInput formControlName="newTicker" />
       </mat-form-field> 
 
       <button mat-button (click)="add()">ADD</button> -->
-    </section>
+  </section>
 
-    <section>
-        <h2>Cost Reducer</h2>
-        <!-- <section><cost-reducer></cost-reducer></section> -->
-    </section>
-    <section>
-        <h2>Companies</h2>
-        <div *ngFor="let t of companies">
-            <!-- <a [routerLink]="'details-insights/' + t.ticker">{{ t.ticker }}</a> -->
-            Holding {{ t.shares_held }} Buy Price {{ t.evaluation.target_price }}
-
-        </div>
-    </section>
+  <section>
+    <h2>Cost Reducer</h2>
+    <!-- <section><cost-reducer></cost-reducer></section> -->
+  </section>
+  <section>
+    <h2>Companies</h2>
+    <div *ngFor="let t of companies">
+      {{ t.ticker }}
+      <!-- <a [routerLink]="'details-insights/' + t.ticker">{{ t.ticker }}</a> -->
+      Holding {{ t.shares_held }} Buy Price {{ t.evaluation.target_price }}
+    </div>
+  </section>
 </div>

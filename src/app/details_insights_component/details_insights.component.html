@@ -2,9 +2,19 @@
   <section>
     <h2>Research</h2>
     <div>
-      <mat-form-field class="example-full-width mr3">
+      <mat-form-field>
         <mat-label>Ticker</mat-label>
-        <input matInput formControlName="tickerToScour" />
+        <input type="text"
+          placeholder="ticker"
+          matInput
+          formControlName="tickerToScour"
+          [matAutocomplete]="auto"
+          >
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            @for (option of companies; track option) {
+              <mat-option [value]="option.ticker">{{option.ticker}}</mat-option>
+            }
+          </mat-autocomplete>
       </mat-form-field>
       <button mat-raised-button color="primary" class="ml3" (click)="scour()">
         Scour
@@ -44,7 +54,7 @@
           </h4>
         </mat-list-item>
 
-        <mat-card>
+        <mat-card class="pa3">
           <h3 class="f4">Link Area</h3>
 
           <div>
